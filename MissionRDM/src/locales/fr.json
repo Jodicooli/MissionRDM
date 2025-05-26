@@ -1,0 +1,9 @@
+{
+  "startScreen": {
+    "title": "Bienvenue dans Mission GDR",
+    "enterName": "Entrez votre nom :",
+    "namePlaceholder": "Votre nom",
+    "startGame": "Démarrer le jeu",
+    "tutorial": "Tutoriel"
+  }
+}
