@@ -1,5 +1,5 @@
 <template>
-    <div class="bg-[#1b1b1b] text-white p-4 rounded shadow-lg max-w-xl w-fit border border-white">
+    <div class="bg-[#1b1b1b] text-white p-4 rounded shadow-lg w-[90%] max-w-2xl mx-auto border border-white">
         <div class="flex items-center gap-3 mb-3">
             <img :src="avatar" class="w-10 h-10 rounded-full border border-white" />
         <div class="font-bold">{{ name }}</div>

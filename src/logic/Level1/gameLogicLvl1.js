@@ -104,6 +104,7 @@ export function useGameLogicLvl1(setFeedback) {
     // Step 7: User enters 88 → continue to level 2
     if (game.currentScenarioImage === 'congrats' && code === continueLvl2) {
       game.enteredCodes.push(continueLvl2)
+      game.resetAfterLevel()
       game.level = 2
       router.push('/level/2')
       return

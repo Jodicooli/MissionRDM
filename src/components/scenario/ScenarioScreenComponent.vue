@@ -56,9 +56,9 @@
 </template>
 <script setup>
 import { ref, onMounted } from 'vue'
-import RoadmapButton from '@/components/RoadmapButtonComponent.vue'
-import RoadmapModal from '@/components/RoadmapModalComponent.vue'
-import { useRoadmapStore } from '@/stores/roadmap'
+import RoadmapButton from '@/components/roadmap/RoadmapButtonComponent.vue'
+import RoadmapModal from '@/components/roadmap/RoadmapModalComponent.vue'
+import { useRoadmapStore } from '@/store/roadmap'
 import { useI18n } from 'vue-i18n'
 import { useGameInfo } from '@/store/gameInfo'
 
