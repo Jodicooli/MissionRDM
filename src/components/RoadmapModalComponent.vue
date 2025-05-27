@@ -16,7 +16,7 @@
 </template>
 
 <script setup>
-import Roadmap from './Roadmap.vue'
+import Roadmap from './RoadmapComponent.vue'
 defineProps({
   visible: Boolean,
   steps: Array

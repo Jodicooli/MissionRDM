@@ -43,7 +43,7 @@
 <script setup>
 import { useStartScreen } from '@/composables/useStartScreen'
 import { useI18n } from 'vue-i18n'
-import LanguageToggle from '@/components/LanguageToggle.vue'
+import LanguageToggle from '@/components/LanguageToggleComponent.vue'
 import { useRoadmapStore } from '@/stores/roadmap'
 
 const { playerName, startGame, goToTutorial } = useStartScreen()
