@@ -1,0 +1,64 @@
+{
+  "startScreen": {
+    "title": "BIENVENUE DANS VOTRE MISSION GDR",
+    "subtitle": "Un jeu sérieux pour apprendre la GDR (Gestion des Données de Recherche). Bonne chance !",
+    "enterName": "Entrez votre nom :",
+    "namePlaceholder": "Votre nom",
+    "startGame": "Démarrer le jeu",
+    "tutorial": "Tutoriel"
+  },
+  "intro": {
+    "text": "Vous faites partie d’une jeune équipe de recherche d'un institut en tourisme en Suisse et prévoyez de vous lancer dans un projet de recherche sur l’hôtellerie en Suisse.\n\nVotre collègue, avec son équipe, a déjà mené une étude sur le sujet. Contrairement à elle, vous n’êtes pas au clair sur les besoins liés à la gestion de vos données, car vous n'avez pu participer à la formation de la Bibliothèque sur la thématique de la gestion des données de la recherche.\n\nVotre collègue part en vacances en Amazonie cet après-midi. Juste avant son départ, elle rédige rapidement l’ébauche d’une feuille de route avec les grandes étapes pour mener à bien votre projet et assurer une gestion adéquate de vos données.\n\nComme son avion va bientôt décoller, elle n’a pas le temps de terminer et vous propose de vous installer à son bureau, le numéro 59, où vous trouverez toutes les informations pour compléter la liste qu’elle a commencée, à condition de fouiller un peu dans ses affaires et celles de son équipe...",
+    "continue": "Continuer"
+  },
+  "phone": {
+    "help": "AIDE",
+    "close": "Fermer",
+    "solution": "SOLUTION",
+    "placeholder": "Code",
+    "delete": "⌫",
+    "enter": "Valider",
+    "callUnavailable": "Je ne peux pas parler pour le moment. Essayez de m'appeler plus tard.",
+    "call1": "Hello ! Voici quelques conventions de nommage qui pourraient vous aider :\n\n→ Choisis un nom de fichier court et significatif : max 32 caractères, commence par l'élément le plus important et utilise des abréviations prédéfinis pour réduire le nombre de caractères.\n\n→ Le nom du fichier doit contenir le sujet, la date et la version. Éviter les caractères spéciaux, la ponctuation et les caractères accentués.\n\n→ Éviter les espaces entre les mots; utiliser des tirets souligné \"_\" et des majuscules. Indiquer les dates dans le bon format comme AAAAMMJJ ou AAAA-MM-JJ.\n\n→ Indiquer les versions des documents comme V05 / V05Final. Bonne chance !",
+    "hoverCall": "Appeler",
+    "codeAlreadyFound": "Déjà trouvé",
+    "codeFound": "Code correct",
+    "invalidCode": "Code incorrect",
+    "messageBodylvl1": "Le DMP ou Plan de gestion de données est un document qui est rédigé dans la phase préliminaire d’un projet puis complété au fur et à mesure de l’avancée de la recherche. Il aide à organiser et anticiper toutes les étapes du cycle de vie de la donnée. Il explique comment les données du projet sont gérées, de la création jusqu’au partage et à l’archivage.\n\nLes étapes que vous allez découvrir dans la suite de vos investigations vont vous permettre de comprendre comment bien remplir chaque partie du DMP.\n\nBonne chance !"
+  },
+  "roadmap": {
+    "title": "Roadmap",
+    "entries": "No entries yet...",
+    "complete": "✅ Completed",
+    "step1": "Étape 1 : Elaboration et planification du projet",
+    "step1_1": "1.1 Rédiger le DMP",
+    "step1_1_A": "A. Informations administratives",
+    "step1_1_B": "B. Collecte des données",
+    "step1_1_C": "C. Documentation et métadonnées",
+    "step1_1_D": "D. Éthique et conformité légale",
+    "step1_1_E": "E. Stockage et sauvegarde",
+    "step1_1_F": "F. Sélection et conservation",
+    "step1_1_G": "G. Partage des données",
+    "step1_1_H": "H. Responsabilités et ressources",
+    "step1_2": "1.2 Règles de nommage et d’organisation des fichiers",
+    "step1_3": "1.3 Réfléchir aux données produites ou réutilisées"
+  },
+  "riddle": {
+    "submit": "Soumettre"
+  },
+  "riddle1": {
+    "title1": "1.1 Rédiger le DMP",
+    "question1": "Essayez de résoudre cette énigme pour trouver les premières étapes de la feuille de route. Utilisez ce que vous voyez ici pour trouver la réponse.\n\nEntrez dans chaque champ de saisie une des étapes (séquence : 1.1., B, C, E, F et G) du DMP que vous pouvez voir dans l'image. Evitez d'utiliser les accents et les caractères spéciaux.\n\nBonne chance !",
+    "placeholder1": "Entrez votre réponse ",
+    "correctAnswers1": [
+      "Rediger le DMP",
+      "Collecte des donnees",
+      "Documentation et metadonnees",
+      "Stockage et sauvegarde",
+      "Selection et conservation",
+      "Partage des donnees"
+    ],
+    "correct1": "Correct, bien joué !",
+    "incorrect1": "Incorrect, essayez à nouveau ! Vous n'avez pas besoin d'utiliser 1.1., B, C, E, F et G dans vos réponses. Evitez les accents et les caractères spéciaux."
+  }
+}

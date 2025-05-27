@@ -1,0 +1,64 @@
+{
+  "startScreen": {
+    "title": "WELCOME TO YOUR MISSION RDM",
+    "subtitle": "A serious game to learn about RDM (Research Data Management). Good luck!",
+    "enterName": "Enter your name:",
+    "namePlaceholder": "Your name",
+    "startGame": "Start Game",
+    "tutorial": "Tutorial"
+  },
+  "intro": {
+    "text": "You are part of a junior research team in a Swiss tourism institute and are planning a research project about the hotel industry in Switzerland. \n\nYour experienced colleague and her team have already conducted their own study on the subject. Unlike her, you are not well informed about the requirements for optimal data management, as you were unable to attend your library's research data management training course. \n\nYour colleague will be leaving for a trip to the Amazon this afternoon. Just before she leaves, she quickly drafts a roadmap with the major steps needed to complete your project and ensure proper management of your research data. As her plane is about to take off, she doesn't have time to finalize it and suggests that you go to her office, where you should find all the information you need to complete the list she has started, provided you go through her things and those of her team. \n\nLuckily, you can also count on Santiago, the information specialist of the institute's library, Inès, an IT specialist and Jack, the institute's legal expert, who will help you during your mission. \n\nBut beware, there is only an hour left before the building closes for the end-of-year holidays! You will have to get out before then if you don't want to stay locked in...",
+    "continue": "Continue"
+  },
+  "phone": {
+    "help": "HELP",
+    "close": "Close",
+    "solution": "SOLUTION",
+    "placeholder": "Code",
+    "delete": "⌫",
+    "enter": "Enter",
+    "callUnavailable": "I can't talk right now. Try calling me later.",
+    "call1": "Hey! Here are some naming conventions that might help you:\n\n→ Choose a short and meaningful file name: max 32 characters, start with the most important element and use pre-defined acronyms to limit the number of characters.\n\n→ The file name must contain the subject, date, and version. Avoid special characters, punctuation, and accents.\n\n→ Avoid spaces between words; use underscores and capital letters. Use standard date formats like YYYYMMDD or YYYY-MM-DD.\n\n→ Include a pre-defined version control indicator like V05 / V05Final. Good luck!",
+    "hoverCall": "Call",
+    "codeAlreadyFound": "Already found!",
+    "codeFound": "Correct code!",
+    "invalidCode": "Wrong code!",
+    "messageBodylvl1": "The DMP or Data Management Plan is a document drafted in the preliminary phase of a research project and completed as the project progresses. \n\nIt helps organize and anticipate all the stages of the data lifecycle. It explains how the project's data is managed, from creation to sharing and archiving. \n\nThe different steps you will discover in the course of your investigations will help you understand how to properly complete each section of the DMP. \n\nGood luck!"
+  },
+  "roadmap": {
+    "title": "Roadmap",
+    "entries": "No entries yet...",
+    "complete": "✅ Completed",
+    "step1": "Step 1: Project design and planning",
+    "step1_1": "1.1 Writing the DMP",
+    "step1_1_A": "A. Administrative information",
+    "step1_1_B": "B. Data collection",
+    "step1_1_C": "C. Documentation and metadata",
+    "step1_1_D": "D. Ethics and legal compliance",
+    "step1_1_E": "E. Storage and backup strategies",
+    "step1_1_F": "F. Selection and conservation",
+    "step1_1_G": "G. Data sharing",
+    "step1_1_H": "H. Responsibilities and resources",
+    "step1_2": "1.2 File structure and naming conventions",
+    "step1_3": "1.3 Reflect on the data produced or reused "
+  },
+  "riddle": {
+    "submit": "Submit"
+  },
+  "riddle1": {
+    "title1": "1.1 Writing the DMP",
+    "question1": "Try solving this riddle to find the first steps of the roadmap. Use what you see here to find the answer. \n\nEnter in each input field one of the steps (sequence: 1.1., B, C, E, F and G) of the DMP that you can see in the image. \n\nGood luck!",
+    "placeholder1": "Enter your answer ",
+    "correctAnswers1": [
+      "Writing the DMP",
+      "Data collection",
+      "Documentation and metadata",
+      "Storage and backup strategies",
+      "Selection and conservation",
+      "Data sharing"
+    ],
+    "correct1": "Correct, well done!",
+    "incorrect1": "Incorrect, try again! You do not need to use 1.1., B. C, E, F and G in your answers."
+  }
+}
