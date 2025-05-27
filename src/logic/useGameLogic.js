@@ -1,5 +1,5 @@
 import { useRoute } from 'vue-router'
-import { useGameLogicLvl1 } from './gameLogicLvl1'
+import { useGameLogicLvl1 } from './Level1/gameLogicLvl1'
 
 export function useGameLogic(setFeedback) {
   const route = useRoute()

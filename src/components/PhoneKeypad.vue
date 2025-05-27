@@ -78,7 +78,7 @@
 <script setup>
 import { ref } from 'vue'
 import { useI18n } from 'vue-i18n'
-import { useGameLogicLvl1 } from '@/logic/gameLogicLvl1.js'
+import { useGameLogicLvl1 } from '@/logic/Level1/gameLogicLvl1.js'
 import char1 from '@/assets/characters/char1.png'
 import char2 from '@/assets/characters/char2.png'
 import char3 from '@/assets/characters/char3.png'

@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import { checkUpdateScenarioImage } from '@/logic/gameLogicLvl1.js'
+import { checkUpdateScenarioImage } from '@/logic/Level1/gameLogicLvl1.js'
 
 let overlayId = 0
 

@@ -73,8 +73,8 @@ import EnScenarioFinal from '@/assets/en/lvl1/scenario1.4.png'
 import FrScenarioFinal from '@/assets/fr/lvl1/scenario1.4.png'
 import EnScenarioCongrats from '@/assets/en/lvl1/scenario1.5.png'
 import FrScenarioCongrats from '@/assets/fr/lvl1/scenario1.5.png'
-import RiddleImageEN from '@/assets/riddles/en/riddle1.png'
-import RiddleImageFR from '@/assets/riddles/fr/riddle1.png'
+import RiddleImageEN from '@/assets/en/riddles/riddle1.png'
+import RiddleImageFR from '@/assets/fr/riddles/riddle1.png'
 
 const { locale, messages, t } = useI18n()
 

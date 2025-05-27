@@ -1,10 +1,10 @@
 import { useGameInfo } from '@/store/gameInfo'
 import { useRouter } from 'vue-router'
 import { useI18n } from 'vue-i18n'
-import hintImageEN from '@/assets/postits/en/hint1.png'
-import hintImageFR from '@/assets/postits/fr/hint1.png'
-import hintImageEN2 from '@/assets/postits/en/hint2.png'
-import hintImageFR2 from '@/assets/postits/fr/hint2.png'
+import hintImageEN from '@/assets/en/postits/hint1.png'
+import hintImageFR from '@/assets/fr/postits/hint1.png'
+import hintImageEN2 from '@/assets/en/postits/hint2.png'
+import hintImageFR2 from '@/assets/fr/postits/hint2.png'
 import char1 from '@/assets/characters/char1.png'
 
 export function useGameLogicLvl1(setFeedback) {
