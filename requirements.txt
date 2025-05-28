@@ -4,3 +4,6 @@
 3. npm install -D tailwindcss postcss autoprefixer
 4. npx tailwindcss init -p (or manually create tailwind.config.js and postcss.config.js)
 5. npm install vue-router pinia vue-i18n
+
+testing: 
+npm install -D vitest @vue/test-utils @testing-library/vue @testing-library/jest-dom jsdom

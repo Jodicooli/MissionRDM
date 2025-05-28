@@ -1,9 +1,0 @@
-{
-  "startScreen": {
-    "title": "Welcome to Mission RDM",
-    "enterName": "Enter your name:",
-    "namePlaceholder": "Your name",
-    "startGame": "Start Game",
-    "tutorial": "Tutorial"
-  }
-}
