@@ -1,6 +1,6 @@
 import { describe, it, expect, beforeEach, vi } from 'vitest'
 import { setActivePinia, createPinia } from 'pinia'
-import { useGameLogic } from '@/logic/useGameLogic'
+import { useGameLogic } from '@/logic/useGameLogic.js'
 
 describe('Game Logic Router', () => {
   let setFeedback

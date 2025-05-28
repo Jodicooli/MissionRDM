@@ -1,7 +1,7 @@
 import { describe, it, expect, beforeEach, vi } from 'vitest'
 import { setActivePinia, createPinia } from 'pinia'
-import { useGameLogicLvl1 } from '@/logic/level1/gameLogicLvl1'
-import { useGameInfo } from '@/store/gameInfo'
+import { useGameLogicLvl1 } from '@/logic/level1/gameLogicLvl1.js'
+import { useGameInfo } from '@/store/gameInfo.js'
 
 describe('Game Logic Level 1', () => {
   let store, setFeedback, logic

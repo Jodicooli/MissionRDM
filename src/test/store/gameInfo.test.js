@@ -1,6 +1,6 @@
 import { describe, it, expect, beforeEach, vi } from 'vitest'
 import { setActivePinia, createPinia } from 'pinia'
-import { useGameInfo } from '@/store/gameInfo'
+import { useGameInfo } from '@/store/gameInfo.js'
 
 describe('GameInfo Store', () => {
   let store

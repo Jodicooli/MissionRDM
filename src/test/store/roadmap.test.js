@@ -1,6 +1,6 @@
 import { describe, it, expect, beforeEach } from 'vitest'
 import { setActivePinia, createPinia } from 'pinia'
-import { useRoadmapStore } from '@/store/roadmap'
+import { useRoadmapStore } from '@/store/roadmap.js'
 
 describe('Roadmap Store', () => {
   let store
