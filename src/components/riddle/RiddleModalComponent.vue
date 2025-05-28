@@ -31,6 +31,8 @@
 import { ref, computed, watch } from 'vue'
 import { useGameInfo } from '@/store/gameInfo'
 import {useRoadmapStore} from '@/store/roadmap'
+import { playSound } from '@/utils/playSound'
+import stepFoundSound from '@/assets/audio/stepFound.mp3'
 
 const props = defineProps({
   visible: Boolean,
@@ -80,6 +82,7 @@ function checkAnswer() {
 
   if (allMatch) {
     setTimeout(() => {
+      playSound(stepFoundSound)
       feedback.value = ''
       feedbackType.value = ''
       inputStates.value = inputStates.value.map(() => '')

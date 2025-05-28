@@ -7,6 +7,10 @@ import hintImageEN2 from '@/assets/en/postits/hint2.png'
 import hintImageFR2 from '@/assets/fr/postits/hint2.png'
 import char1 from '@/assets/characters/char1.png'
 import { useRoadmapStore } from '@/store/roadmap'
+import { playSound } from '@/utils/playSound'
+import stepFoundSound from '@/assets/audio/stepFound.mp3'
+import messageSound from '@/assets/audio/message.mp3'
+import levelSound from '@/assets/audio/level.mp3'
 
 export function useGameLogicLvl1(setFeedback) {
   const game = useGameInfo()
@@ -46,6 +50,7 @@ export function useGameLogicLvl1(setFeedback) {
       game.enteredCodes.push('4')
       game.enteredCodes.push('8')
       setFeedback('success', t('phone.codeFound'))
+      playSound(stepFoundSound)
       const image2 = locale.value === 'fr' ? hintImageFR2 : hintImageEN2
       game.showOverlay({
         type: 'image',
@@ -65,7 +70,7 @@ export function useGameLogicLvl1(setFeedback) {
         }
         return
       }
-      
+      playSound(messageSound)
       game.activeMessage = {
         from: 'S15',
         name: 'Santiago',
@@ -98,8 +103,11 @@ export function useGameLogicLvl1(setFeedback) {
     // Step 6: User enters 28 → cong
     if (game.currentScenarioImage === 'final' && code === finishLvl1Code) {
       game.enteredCodes.push(finishLvl1Code)
+      playSound(levelSound)
       game.currentScenarioImage = 'congrats'
       setFeedback('success', t('phone.codeFound'))
+      //play sound
+
       game.setCharCallable('Santiago', false)
       roadmap.addEntry('step1', 'step1_2')
       return

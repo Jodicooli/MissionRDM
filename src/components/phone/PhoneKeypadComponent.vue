@@ -83,6 +83,8 @@ import char1 from '@/assets/characters/char1.png'
 import char2 from '@/assets/characters/char2.png'
 import char3 from '@/assets/characters/char3.png'
 import { useGameInfo } from '@/store/gameInfo.js'
+import { playSound } from '@/utils/playSound'
+import callSound from '@/assets/audio/call.mp3'
 
 const game = useGameInfo()
 
@@ -112,6 +114,7 @@ function makeCall(character) {
   if (!game.isCharCallable(character.name)) {
     game.startCall(character.name, character.avatar, t('phone.callUnavailable'))
   } else {
+    playSound(callSound)
     const lvl = game.getLvl()
     if (lvl === 1) {
       game.startCall(character.name, character.avatar, t(`phone.call1`))
