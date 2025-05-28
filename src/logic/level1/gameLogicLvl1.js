@@ -101,7 +101,7 @@ export function useGameLogicLvl1(setFeedback) {
       return
     }
 
-    // Step 6: User enters 28 → cong
+    // Step 6: User enters 28 → show congratulations modal
     if (game.currentScenarioImage === 'final' && code === finishLvl1Code) {
       game.enteredCodes.push(finishLvl1Code)
       playSound(stepFoundSound)
@@ -112,13 +112,11 @@ export function useGameLogicLvl1(setFeedback) {
       return
     }
 
-    // Step 7: User enters 88 → continue to level 2
+    // Step 7: User enters 88 → continue to level 2 (this will now be handled by the modal)
     if (game.currentScenarioImage === 'congrats' && code === continueLvl2) {
       game.enteredCodes.push(continueLvl2)
       playSound(levelSound)
-      game.resetAfterLevel()
-      game.level = 2
-      router.push('/level/2')
+      game.showCongratsModal = true
       return
     }
 
@@ -126,7 +124,15 @@ export function useGameLogicLvl1(setFeedback) {
     setFeedback('error', '')
   }
 
-  return { handleCodeInput }
+  // Function to handle continuing to level 2 from the modal
+  function continueToLevel2() {
+    game.showCongratsModal = false
+    game.resetAfterLevel()
+    game.level = 2
+    router.push('/level/2')
+  }
+
+  return { handleCodeInput, continueToLevel2 }
 }
 
 export function checkUpdateScenarioImage() {

@@ -14,6 +14,16 @@
         />
       </transition>
 
+      <!-- Congratulations Modal -->
+      <CongratsModal
+        v-if="game.showCongratsModal"
+        :visible="game.showCongratsModal"
+        :level="1"
+        :steps="congratsSteps"
+        @close="game.showCongratsModal = false"
+        @continue="handleContinueToLevel2"
+      />
+
       <!-- Sidebar: Timer + Phone -->
       <div class="flex flex-col gap-4 w-full max-w-sm lg:w-[300px]">
         <Timer />
@@ -52,10 +62,12 @@
     </div>
   </div>
 </template>
+
 <script setup>
 import { ref, computed } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useGameInfo } from '@/store/gameInfo'
+import { useGameLogicLvl1 } from '@/logic/level1/gameLogicLvl1.js'
 import Timer from '@/components/others/TimerComponent.vue'
 import Phone from '@/components/phone/PhoneComponent.vue'
 import PhoneMessage from '@/components/messageAndCall/PhoneMessageComponent.vue'
@@ -63,6 +75,7 @@ import PhoneKeypad from '@/components/phone/PhoneKeypadComponent.vue'
 import ScenarioDisplay from '@/components/scenario/ScenarioScreenComponent.vue'
 import RiddleModal from '@/components/riddle/RiddleModalComponent.vue'
 import PhoneCall from '@/components/messageAndCall/PhoneCallComponent.vue'
+import CongratsModal from '@/components/others/CongratsModalComponent.vue'
 import EnScenario from '@/assets/en/lvl1/scenario1.png'
 import EnScenario2 from '@/assets/en/lvl1/scenario1.2.png'
 import FrScenario from '@/assets/fr/lvl1/scenario1.png'
@@ -84,6 +97,10 @@ const correctAnswers = computed(() =>
 
 const game = useGameInfo()
 
+// Initialize game logic
+const setFeedback = (type, message) => game.setFeedback(type, message)
+const { continueToLevel2 } = useGameLogicLvl1(setFeedback)
+
 const riddleImage = computed(() =>
   locale.value === 'fr' ? RiddleImageFR : RiddleImageEN
 )
@@ -94,6 +111,31 @@ function handleMessageClose() {
     game.activeRiddle = true
   }
 }
+
+function handleContinueToLevel2() {
+  continueToLevel2()
+}
+
+// Get congratulations steps from roadmap entries completed in level 1
+const congratsSteps = computed(() => [
+  {
+    label: t('roadmap.step1'),
+    items: [
+      t('roadmap.step1_1'),
+      t('roadmap.step1_1_A'),
+      t('roadmap.step1_1_B'),
+      t('roadmap.step1_1_C'),
+      t('roadmap.step1_1_D'),
+      t('roadmap.step1_1_E'),
+      t('roadmap.step1_1_F'),
+      t('roadmap.step1_1_G'),
+      t('roadmap.step1_2'),
+      t('roadmap.step1_3'),
+      t('roadmap.step1_4'),
+      t('roadmap.step1_5')
+    ]
+  }
+])
 
 const images = {
   en: { default: EnScenario, updated: EnScenario2, third: EnScenario3, final: EnScenarioFinal, congrats: EnScenarioCongrats },

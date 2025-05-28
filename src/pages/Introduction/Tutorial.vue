@@ -2,7 +2,7 @@
     <div class="min-h-screen flex items-center justify-center bg-[#121212] text-gray-200 px-4 relative font-mono">
         <LanguageToggle />
     
-        <div class="w-full max-w-md bg-[#202020] rounded-xl border border-gray-700 shadow-[0_0_30px_rgba(255,191,0,0.2)] p-10">
+        <div class="w-full max-w-6xl bg-[#202020] rounded-xl border border-gray-700 shadow-[0_0_30px_rgba(255,191,0,0.2)] p-16">
         <h1 class="text-3xl font-bold text-center text-amber-400 mb-8 tracking-widest uppercase">
             {{ $t('tutorial.title') }}
         </h1>
@@ -35,3 +35,6 @@
         </div>
     </div>
 </template>
+<script setup>
+import LanguageToggle from '@/components/others/LanguageToggleComponent.vue'
+</script>

@@ -8,14 +8,18 @@ export const useGameInfo = defineStore('game', {
     playerName: '',
     level: 1,
     progress: [],
-    hintsUsed: {}, 
+    hintsUsed: {},
+    
     showHintModal: false,
     hintModalType: 'clues',
-    enteredCodes: [], 
-    overlayNotes: [],  
+    enteredCodes: [],
+    
+    overlayNotes: [],
+     
     activeMessage: null,
     activeRiddle: null,
-    riddleSolved: false, 
+    riddleSolved: false,
+    
     firstHintFound: false,
     secondHintFound: false,
     callableCharacters: {
@@ -31,9 +35,12 @@ export const useGameInfo = defineStore('game', {
     feedback: {
       type: '',
       message: ''
-    }
+    },
+    
+    // Add congratulations modal state
+    showCongratsModal: false
   }),
-
+  
   actions: {
     markRiddleAsSolved() {
       this.riddleSolved = true
@@ -77,7 +84,7 @@ export const useGameInfo = defineStore('game', {
       const fullNote = typeof note === 'string'
         ? { id, type: 'text', text: note }
         : { ...note, id }
-
+       
       this.overlayNotes.push(fullNote)
     },
     removeOverlay(id) {
@@ -91,7 +98,7 @@ export const useGameInfo = defineStore('game', {
     setFeedback(type, message) {
       this.feedback.type = type
       this.feedback.message = message
-
+       
       setTimeout(() => {
         this.feedback.type = ''
         this.feedback.message = ''
@@ -108,6 +115,7 @@ export const useGameInfo = defineStore('game', {
       this.currentScenarioImage = 'default'
       this.feedback.type = ''
       this.feedback.message = ''
+      this.showCongratsModal = false 
       this.callableCharacters = {
         Santiago: false,
         Inès: false,

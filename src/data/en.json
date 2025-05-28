@@ -11,6 +11,13 @@
     "text": "You are part of a junior research team in a Swiss tourism institute and are planning a research project about the hotel industry in Switzerland. \n\nYour experienced colleague and her team have already conducted their own study on the subject. Unlike her, you are not well informed about the requirements for optimal data management, as you were unable to attend your library's research data management training course. \n\nYour colleague will be leaving for a trip to the Amazon this afternoon. Just before she leaves, she quickly drafts a roadmap with the major steps needed to complete your project and ensure proper management of your research data. As her plane is about to take off, she doesn't have time to finalize it and suggests that you go to her office, where you should find all the information you need to complete the list she has started, provided you go through her things and those of her team. \n\nLuckily, you can also count on Santiago, the information specialist of the institute's library, Inès, an IT specialist and Jack, the institute's legal expert, who will help you during your mission. \n\nBut beware, there is only an hour left before the building closes for the end-of-year holidays! You will have to get out before then if you don't want to stay locked in...",
     "continue": "Continue"
   },
+  "congrats": {
+    "title": "Congratulations!",
+    "subtitle": "Level {level} Completed!",
+    "achievement": "You've unlocked a badge!",
+    "message": "You've successfully completed all objectives for this level!",
+    "continue": "Continue to next level"
+  },
   "phone": {
     "help": "HELP",
     "close": "Close",
@@ -29,7 +36,7 @@
   "roadmap": {
     "title": "Roadmap",
     "entries": "No entries yet...",
-    "complete": "✅ Completed",
+    "complete": "Completed",
     "step1": "Step 1: Project design and planning",
     "step1_1": "1.1 Writing the DMP",
     "step1_1_A": "A. Administrative information",
@@ -65,6 +72,17 @@
     "step6": "Step 6: Data reuse",
     "step6_1": "6.1 Evaluate data access and reuse",
     "step6_2": "6.2 Prepare dataset citation"
+  },
+  "tutorial": {
+    "title": "Tutorial",
+    "subtitle": "Welcome to the tutorial! In this game, you will learn about Research Data Management (RDM) through a series of challenges. \n\nYour mission is to complete the roadmap by finding the correct steps and codes hidden in the environment. You will interact with various characters who will provide hints and information to help you along the way. \n\nPay attention to details, explore your surroundings, and use your problem-solving skills to progress through the levels. Good luck!",
+    "instructions": "Enter the numbers you find in the environment to complete the steps of the roadmap in your phone.",
+    "step1": "When clicking on the roadmap, you will see the steps of the DMP that have already been completed.",
+    "step2": "You can click on the contacts icon to call Santiago, Inès or Jack who will provide you sometimes with hints to the challenges.",
+    "step3": "You can also click on help or solution to have more information about the current challenge.",
+    "tips": "To complete a level, you need to find all the codes and steps of the roadmap. Once you have completed a level, you will receive a badge as a reward.",
+    "conclusion": "Congratulations on completing the tutorial! You are now ready to start your mission.",
+    "backToStart": "Back to Start Screen"
   },
   "riddle": {
     "submit": "Submit"

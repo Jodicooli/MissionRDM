@@ -52,11 +52,18 @@ describe('Game Logic Level 1', () => {
     expect(store.currentScenarioImage).toBe('congrats')
   })
 
-  it('advances to level 2', () => {
+  it('advances to badge', () => {
     store.currentScenarioImage = 'congrats'
     logic.handleCodeInput('88')
-    
+    expect(store.enteredCodes).toContain('88')
+    expect(store.showCongratsModal).toBe(true)
+  })
+
+  it('continues to level 2 from modal', () => {
+    store.showCongratsModal = true
+    logic.continueToLevel2()
     expect(store.level).toBe(2)
-    expect(global.mockRouter.push).toHaveBeenCalledWith('/level/2')
+    expect(store.enteredCodes).toEqual([])
+    expect(store.showCongratsModal).toBe(false)
   })
 })
