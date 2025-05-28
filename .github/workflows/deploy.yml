@@ -14,5 +14,10 @@ jobs:
         with:
           node-version: 18
           
-      - run: npm install
+      - name: Clean install dependencies
+        run: |
+          rm -rf node_modules package-lock.json
+          npm cache clean --force
+          npm install --no-optional --legacy-peer-deps
+          
       - run: npm run deploy
