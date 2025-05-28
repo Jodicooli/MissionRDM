@@ -8,7 +8,7 @@
     <RoadmapButton @click="showRoadmap = true" />
 
     <!-- Roadmap Modal -->
-    <RoadmapModal :visible="showRoadmap" :steps="roadmap.steps" @close="showRoadmap = false" />
+    <RoadmapModal :visible="showRoadmap" :steps="roadmap.roadmapSteps" @close="showRoadmap = false" />
 
     <!-- Overlay Notes -->
     <div
@@ -73,6 +73,7 @@ defineProps({
 })
 
 onMounted(() => {
-  roadmap.initialize(locale.value)
+  roadmap.initializeSteps()
 })
+
 </script>

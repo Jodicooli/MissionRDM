@@ -3,8 +3,8 @@ import App from './App.vue'
 import { createPinia } from 'pinia'
 import router from './router'
 import { createI18n } from 'vue-i18n'
-import en from './locales/en.json'
-import fr from './locales/fr.json'
+import en from './data/en.json'
+import fr from './data/fr.json'
 import './index.css'
 
 const i18n = createI18n({

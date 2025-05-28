@@ -30,6 +30,7 @@
 <script setup>
 import { ref, computed, watch } from 'vue'
 import { useGameInfo } from '@/store/gameInfo'
+import {useRoadmapStore} from '@/store/roadmap'
 
 const props = defineProps({
   visible: Boolean,
@@ -48,6 +49,7 @@ const inputStates = ref([])
 const guessList = ref([])
 const feedback = ref('')
 const feedbackType = ref('')
+const roadmap = useRoadmapStore()
 
 const correctAnswers = computed(() => 
   Array.isArray(props.correctAnswers) 
@@ -82,6 +84,12 @@ function checkAnswer() {
       feedbackType.value = ''
       inputStates.value = inputStates.value.map(() => '')
       game.markRiddleAsSolved()
+      roadmap.addEntry('step1', 'step1_1')
+      roadmap.addEntry('step1', 'step1_1_B')
+      roadmap.addEntry('step1', 'step1_1_C')
+      roadmap.addEntry('step1', 'step1_1_E')
+      roadmap.addEntry('step1', 'step1_1_F')
+      roadmap.addEntry('step1', 'step1_1_G')
       game.markMessageAsRead()
       emit('close')
     }, 2000)

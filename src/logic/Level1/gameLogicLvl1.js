@@ -6,11 +6,13 @@ import hintImageFR from '@/assets/fr/postits/hint1.png'
 import hintImageEN2 from '@/assets/en/postits/hint2.png'
 import hintImageFR2 from '@/assets/fr/postits/hint2.png'
 import char1 from '@/assets/characters/char1.png'
+import { useRoadmapStore } from '@/store/roadmap'
 
 export function useGameLogicLvl1(setFeedback) {
   const game = useGameInfo()
   const { t, locale } = useI18n()
   const router = useRouter()
+  const roadmap = useRoadmapStore()
 
   function handleCodeInput(code) {
     const hintCode = '8'
@@ -49,6 +51,7 @@ export function useGameLogicLvl1(setFeedback) {
         type: 'image',
         src: image2,
       })
+      roadmap.addEntry('step1', 'step1_3')
       checkUpdateScenarioImage()
       return
     }
@@ -98,6 +101,7 @@ export function useGameLogicLvl1(setFeedback) {
       game.currentScenarioImage = 'congrats'
       setFeedback('success', t('phone.codeFound'))
       game.setCharCallable('Santiago', false)
+      roadmap.addEntry('step1', 'step1_2')
       return
     }
 

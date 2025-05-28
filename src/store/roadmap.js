@@ -1,64 +1,161 @@
 import { defineStore } from 'pinia'
-import { ref, watch } from 'vue'
-
-const EN_STEPS = [
-  { title: 'Step 1: Project design and planning', items: [], completed: false },
-  { title: 'Step 2: Data collection/creation', items: [], completed: false },
-  { title: 'Step 3: Data processing and analysis', items: [], completed: false },
-  { title: 'Step 4: Data preservation and archiving', items: [], completed: false },
-  { title: 'Step 5: Data sharing', items: [], completed: false },
-  { title: 'Step 6: Data reuse', items: [], completed: false }
-]
-
-const FR_STEPS = [
-  { title: 'Étape 1 : Elaboration et planification du projet', items: [], completed: false },
-  { title: 'Étape 2 : Collecte/création des données', items: [], completed: false },
-  { title: 'Étape 3 : Traitement et analyse des données', items: [], completed: false },
-  { title: 'Étape 4 : Préservation et archivage des données', items: [], completed: false },
-  { title: 'Étape 5 : Partage des données', items: [], completed: false },
-  { title: 'Étape 6 : Réutilisation des données', items: [], completed: false }
-]
+import { ref } from 'vue'
+import { useI18n } from 'vue-i18n'
 
 export const useRoadmapStore = defineStore('roadmap', () => {
-  const steps = ref([])
+  const { t } = useI18n()
 
-  // -- Load initial language version or from localStorage
-  function initialize(lang = 'en') {
-    const saved = localStorage.getItem(`roadmap-${lang}`)
-    if (saved) {
-      steps.value = JSON.parse(saved)
-    } else {
-      steps.value = lang === 'fr' ? FR_STEPS : EN_STEPS
+  // Top-level steps (visible from start)
+  const roadmapSteps = ref([
+    { key: 'step1', label: '', items: [] },
+    { key: 'step2', label: '', items: [] },
+    { key: 'step3', label: '', items: [] },
+    { key: 'step4', label: '', items: [] },
+    { key: 'step5', label: '', items: [] },
+    { key: 'step6', label: '', items: [] }
+  ])
+
+  // Define initial entries with their indentation levels
+  const initialEntries = {
+    step1: [
+      { key: 'step1_1', level: 1 },
+      { key: 'step1_1_A', level: 2 },
+      { key: 'step1_1_D', level: 2 },
+      { key: 'step1_1_H', level: 2 },
+      { key: 'step1_4', level: 1 },
+      { key: 'step1_5', level: 1 }
+    ],
+    step4: [
+      { key: 'step4_4', level: 1 }
+    ],
+    step6: [
+      { key: 'step6_2', level: 1 }
+    ]
+  }
+
+  // Function to sort entries by their key structure
+  function sortEntries(entries) {
+    return entries.sort((a, b) => {
+      const keyA = a.key
+      const keyB = b.key
+      
+      // Split keys into parts for comparison
+      const partsA = keyA.split('_')
+      const partsB = keyB.split('_')
+      
+      // Compare each part
+      for (let i = 0; i < Math.max(partsA.length, partsB.length); i++) {
+        const partA = partsA[i] || ''
+        const partB = partsB[i] || ''
+        
+        // If both parts are numbers, compare numerically
+        if (!isNaN(partA) && !isNaN(partB)) {
+          const numA = parseInt(partA)
+          const numB = parseInt(partB)
+          if (numA !== numB) return numA - numB
+        }
+        // If one is a letter (A-H) and other is number, letter comes after
+        else if (partA.match(/^[A-H]$/) && !isNaN(partB)) {
+          return 1
+        }
+        else if (partB.match(/^[A-H]$/) && !isNaN(partA)) {
+          return -1
+        }
+        // If both are letters, compare alphabetically
+        else if (partA.match(/^[A-H]$/) && partB.match(/^[A-H]$/)) {
+          if (partA !== partB) return partA.localeCompare(partB)
+        }
+        // Default string comparison
+        else {
+          if (partA !== partB) return partA.localeCompare(partB)
+        }
+      }
+      
+      return 0
+    })
+  }
+
+  // Set labels and initial entries on initialization
+  function initializeSteps() {
+    roadmapSteps.value.forEach(step => {
+      step.label = t(`roadmap.${step.key}`)
+      
+      // Add initial entries for this step if they exist
+      if (initialEntries[step.key]) {
+        const entries = initialEntries[step.key].map(entry => ({
+          text: t(`roadmap.${entry.key}`),
+          level: entry.level,
+          key: entry.key
+        }))
+        
+        // Sort entries before adding them
+        step.items = sortEntries(entries)
+      }
+    })
+  }
+
+  // Add an entry to a step with automatic level detection and sorting
+  function addEntry(stepKey, entryKey) {
+    const step = roadmapSteps.value.find(s => s.key === stepKey)
+    if (!step) return
+
+    const label = t(`roadmap.${entryKey}`)
+    const existingItem = step.items.find(item => item.key === entryKey)
+    if (!existingItem) {
+      // Automatically determine level based on entry key pattern
+      let level = 0
+      if (entryKey.includes('_')) {
+        const parts = entryKey.split('_')
+        level = parts.length - 1
+        // Special case for A-H sub-items
+        if (parts[parts.length - 1].match(/^[A-H]$/)) {
+          level = 2
+        }
+      }
+      
+      step.items.push({
+        text: label,
+        level: level,
+        key: entryKey
+      })
+      
+      // Sort items after adding
+      step.items = sortEntries(step.items)
     }
   }
 
-  function addItemToStep(stepIndex, item) {
-    if (steps.value[stepIndex] && !steps.value[stepIndex].items.includes(item)) {
-      steps.value[stepIndex].items.push(item)
-    }
+  // Reset all roadmap progress (keep structure but remove all items)
+  function resetRoadmap() {
+    roadmapSteps.value.forEach(step => {
+      step.items = []
+    })
+    // Re-initialize with initial entries
+    initializeSteps()
   }
 
-  function markStepCompleted(index) {
-    if (steps.value[index]) {
-      steps.value[index].completed = true
-    }
+  // Reset to initial state (only initial entries)
+  function resetToInitial() {
+    roadmapSteps.value.forEach(step => {
+      step.items = []
+      // Add initial entries for this step if they exist
+      if (initialEntries[step.key]) {
+        const entries = initialEntries[step.key].map(entry => ({
+          text: t(`roadmap.${entry.key}`),
+          level: entry.level,
+          key: entry.key
+        }))
+        
+        // Sort entries before adding them
+        step.items = sortEntries(entries)
+      }
+    })
   }
-
-  function resetRoadmap(lang = 'en') {
-    steps.value = lang === 'fr' ? FR_STEPS : EN_STEPS
-  }
-
-  // -- Persist changes
-  watch(steps, (newSteps) => {
-    const langKey = steps.value[0]?.title.startsWith('Étape') ? 'fr' : 'en'
-    localStorage.setItem(`roadmap-${langKey}`, JSON.stringify(newSteps))
-  }, { deep: true })
 
   return {
-    steps,
-    initialize,
-    addItemToStep,
-    markStepCompleted,
-    resetRoadmap
+    roadmapSteps,
+    initializeSteps,
+    addEntry,
+    resetRoadmap,
+    resetToInitial
   }
 })
