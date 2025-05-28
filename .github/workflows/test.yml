@@ -27,5 +27,12 @@ jobs:
         npm install --omit=optional
         npm install @rollup/rollup-linux-x64-gnu || true
     
+    - name: Debug file structure
+      run: |
+        echo "Files in src/logic/level1/:"
+        ls -la src/logic/level1/ || echo "Directory doesn't exist"
+        echo "All .js files in src/logic/:"
+        find src/logic/ -name "*.js" || echo "No .js files found"
+    
     - name: Run tests
       run: npm run test:run
