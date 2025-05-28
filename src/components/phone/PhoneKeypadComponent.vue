@@ -1,45 +1,45 @@
 <template>
-  <div class="flex flex-col gap-4">
-    <!-- Help + Solution -->
-    <div class="grid grid-cols-2 gap-2 text-center">
-      <button 
-        @click="showClues"
-        class="bg-red-600 hover:bg-red-700 py-2 rounded shadow text-sm font-semibold transition-all"
-      >
-        {{ t('phone.help') }}
-      </button>
-      <button 
-        @click="showSolutions"
-        class="bg-yellow-600 hover:bg-yellow-700 py-2 rounded shadow text-sm font-semibold transition-all"
-      >
-        {{ t('phone.solution') }}
-      </button>
-    </div>
+    <div class="flex flex-col gap-4">
+      <!-- Help + Solution -->
+      <div class="grid grid-cols-2 gap-2 text-center">
+    <button 
+      @click="showClues"
+      class="bg-red-600 hover:bg-red-700 py-2 rounded shadow text-sm font-semibold transition-all"
+    >
+      {{ t('phone.help') }}
+    </button>
+    <button 
+      @click="showSolutions"
+      class="bg-yellow-600 hover:bg-yellow-700 py-2 rounded shadow text-sm font-semibold transition-all"
+    >
+      {{ t('phone.solution') }}
+    </button>
+  </div>
 
-    <!-- Hint Modal -->
-    <div v-if="showHintModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50" @click="closeHints">
-      <div class="bg-gray-800 p-6 rounded-lg max-w-md w-full mx-4 max-h-96 overflow-y-auto" @click.stop>
-        <div class="flex justify-between items-center mb-4">
-          <h3 class="text-lg font-semibold text-white">
-            {{ hintModalType === 'clues' ? t('phone.help') : t('phone.solution') }}
-            - Level {{ game.getLvl() }}
-          </h3>
-          <button @click="closeHints" class="text-gray-400 hover:text-white text-xl leading-none">
-            ✕
-          </button>
-        </div>
-        
-        <div class="bg-gray-700 p-4 rounded">
-          <p class="text-white text-sm whitespace-pre-line">
-            {{ hintModalType === 'clues' ? currentHint : currentSolution }}
-          </p>
-        </div>
-        
-        <button @click="closeHints" class="w-full mt-4 bg-amber-600 hover:bg-amber-700 py-2 rounded text-white font-semibold">
-          {{ t('phone.close') }}
+  <!-- Hint Modal -->
+  <div v-if="showHintModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-[9999]" @click="closeHints">
+    <div class="bg-gray-800 p-6 rounded-lg max-w-md w-full mx-4 max-h-96 overflow-y-auto z-[10000]" @click.stop>
+      <div class="flex justify-between items-center mb-4">
+        <h3 class="text-lg font-semibold text-white">
+          {{ hintModalType === 'clues' ? t('phone.help') : t('phone.solution') }}
+          - Level {{ game.getLvl() }}
+        </h3>
+        <button @click="closeHints" class="text-gray-400 hover:text-white text-xl leading-none z-[10001]">
+          ✕
         </button>
       </div>
+      
+      <div class="bg-gray-700 p-4 rounded">
+        <p class="text-white text-sm whitespace-pre-line">
+          {{ hintModalType === 'clues' ? currentHint : currentSolution }}
+        </p>
+      </div>
+      
+      <button @click="closeHints" class="w-full mt-4 bg-amber-600 hover:bg-amber-700 py-2 rounded text-white font-semibold">
+        {{ t('phone.close') }}
+      </button>
     </div>
+  </div>
 
     <!-- Characters -->
     <div class="flex justify-around gap-2">

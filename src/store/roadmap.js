@@ -15,6 +15,9 @@ export const useRoadmapStore = defineStore('roadmap', () => {
     { key: 'step6', label: '', items: [] }
   ])
 
+  // Flash notification state
+  const shouldFlash = ref(false)
+
   // Define initial entries with their indentation levels
   const initialEntries = {
     step1: [
@@ -94,6 +97,14 @@ export const useRoadmapStore = defineStore('roadmap', () => {
     })
   }
 
+  // Trigger flash notification
+  function triggerFlash() {
+    shouldFlash.value = true
+    setTimeout(() => {
+      shouldFlash.value = false
+    }, 1000) // Flash for 1 second
+  }
+
   // Add an entry to a step with automatic level detection and sorting
   function addEntry(stepKey, entryKey) {
     const step = roadmapSteps.value.find(s => s.key === stepKey)
@@ -121,6 +132,9 @@ export const useRoadmapStore = defineStore('roadmap', () => {
       
       // Sort items after adding
       step.items = sortEntries(step.items)
+      
+      // Trigger flash notification
+      triggerFlash()
     }
   }
 
@@ -153,9 +167,11 @@ export const useRoadmapStore = defineStore('roadmap', () => {
 
   return {
     roadmapSteps,
+    shouldFlash,
     initializeSteps,
     addEntry,
     resetRoadmap,
-    resetToInitial
+    resetToInitial,
+    triggerFlash
   }
 })
