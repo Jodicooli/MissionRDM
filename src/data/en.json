@@ -16,7 +16,7 @@
     "subtitle": "Level {level} Completed!",
     "achievement": "You've unlocked a badge!",
     "message": "You've successfully completed all objectives for this level!",
-    "continue": "Continue to next level"
+    "continue": "Continue to the next level"
   },
   "phone": {
     "help": "HELP",

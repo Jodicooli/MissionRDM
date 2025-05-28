@@ -20,7 +20,6 @@
         :visible="game.showCongratsModal"
         :level="1"
         :steps="congratsSteps"
-        @close="game.showCongratsModal = false"
         @continue="handleContinueToLevel2"
       />
 
