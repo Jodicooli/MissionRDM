@@ -21,11 +21,4 @@ onMounted(() => {
   }, 1000)
 })
 
-// Add 30 seconds to the timer 
-function addTime() {
-  seconds += 30
-  const mins = String(Math.floor(seconds / 60)).padStart(2, '0')
-  const secs = String(seconds % 60).padStart(2, '0')
-  time.value = `${mins}:${secs}`
-}
 </script>
