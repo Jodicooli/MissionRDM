@@ -83,5 +83,27 @@
     ],
     "correct1": "Correct, well done!",
     "incorrect1": "Incorrect, try again! You do not need to use 1.1., B. C, E, F and G in your answers."
+  },  
+  "level1": {
+    "hints": {
+      "first": "Need a little break? A coffee could help.",
+      "second": "Count the post-it notes on the desk.",
+      "third": "Take a look at the date the DMP is due.",
+      "fourth": "It's a coded message! The hint is written directly where you enter the solution. Use the title as decoding key.",
+      "fifth": "Take a good look at the screen.",
+      "sixth": "One of the folder seems particularly interesting.",
+      "seventh": "Which file best respects the naming rules presented by Santiago?",
+      "eigth": "It is written directly on the card"
+    },
+    "solutions": {
+      "first": "Enter number 8 (in the coffee cup).",
+      "second": "There are 4 large post-it notes on the desk -> Enter number 4.",
+      "third": "Enter number 29 (in notebook).",
+      "fourth": "Writing the DMP \ndata collection\ndocumentation and metadata\nstorage and backup strategies\nselection and conservation \ndata sharing",
+      "fifth": "Enter number 21 (on screen).",
+      "sixth": "Folder_Number_twenty-six.zip -> Enter number 26.",
+      "seventh": "OFS_Continental_20200628_V01.png -> Enter number 28.",
+      "eigth": "Enter number 88."
+    }
   }
 }

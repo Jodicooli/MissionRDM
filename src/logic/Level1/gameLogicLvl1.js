@@ -29,15 +29,15 @@ export function useGameLogicLvl1(setFeedback) {
 
     // check if the code is already entered
     if (game.enteredCodes.includes(code)) {
-      setFeedback('error', t('phone.codeAlreadyFound'))
+      setFeedback('error', '')
       return
     }
 
     // Step 1: User enters 8 → hint
     if (code === hintCode && !game.enteredCodes.includes(countCode)) {
       const image = locale.value === 'fr' ? hintImageFR : hintImageEN
-      setFeedback('success', t('phone.codeFound'))
-      game.fristHintFound = true
+      setFeedback('success', '')
+      game.firstHintFound = true
       game.showOverlay({
         type: 'image',
         src: image,
@@ -46,10 +46,10 @@ export function useGameLogicLvl1(setFeedback) {
     }
 
     // Step 2: User enters 4 → confirm post-it count, save 8 and 4
-    if (code === countCode && game.fristHintFound) {
+    if (code === countCode && game.firstHintFound) {
       game.enteredCodes.push('4')
       game.enteredCodes.push('8')
-      setFeedback('success', t('phone.codeFound'))
+      setFeedback('success', '')
       playSound(stepFoundSound)
       const image2 = locale.value === 'fr' ? hintImageFR2 : hintImageEN2
       game.showOverlay({
@@ -64,12 +64,13 @@ export function useGameLogicLvl1(setFeedback) {
     // Step 3: User enters 29 → Riddle for 1.1
     if (code === hintCode2) {
       if (game.riddleSolved) {
-        setFeedback('error', t('phone.codeAlreadyFound'))
+        setFeedback('error', '')
         if (!game.enteredCodes.includes(hintCode2)) {
           checkUpdateScenarioImage()
         }
         return
       }
+      game.secondHintFound = true
       playSound(messageSound)
       game.activeMessage = {
         from: 'S15',
@@ -83,7 +84,7 @@ export function useGameLogicLvl1(setFeedback) {
 
     // Step 4: User enters 21 → Find 26 on screen
     if (code === finalCode && game.currentScenarioImage === 'updated') {
-      setFeedback('success', t('phone.codeFound'))
+      setFeedback('success', '')
       game.enteredCodes.push(hintCode2)
       game.currentScenarioImage = 'third'
       game.riddleSolved = false
@@ -95,7 +96,7 @@ export function useGameLogicLvl1(setFeedback) {
     if (game.currentScenarioImage === 'third' && code === lastCode) {
       game.enteredCodes.push(lastCode)
       game.currentScenarioImage = 'final'
-      setFeedback('success', t('phone.codeFound'))
+      setFeedback('success', '')
       game.setCharCallable('Santiago', true)
       return
     }
@@ -105,7 +106,7 @@ export function useGameLogicLvl1(setFeedback) {
       game.enteredCodes.push(finishLvl1Code)
       playSound(levelSound)
       game.currentScenarioImage = 'congrats'
-      setFeedback('success', t('phone.codeFound'))
+      setFeedback('success', '')
       //play sound
 
       game.setCharCallable('Santiago', false)
@@ -123,7 +124,7 @@ export function useGameLogicLvl1(setFeedback) {
     }
 
     // Invalid entry
-    setFeedback('error', t('phone.invalidCode'))
+    setFeedback('error', '')
   }
 
   return { handleCodeInput }

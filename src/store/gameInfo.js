@@ -8,13 +8,16 @@ export const useGameInfo = defineStore('game', {
     playerName: '',
     level: 1,
     progress: [],
-    hintsUsed: {},
+    hintsUsed: {}, 
+    showHintModal: false,
+    hintModalType: 'clues',
     enteredCodes: [], 
     overlayNotes: [],  
     activeMessage: null,
     activeRiddle: null,
     riddleSolved: false, 
-    fristHintFound: false,
+    firstHintFound: false,
+    secondHintFound: false,
     callableCharacters: {
       Santiago: false,
       Inès: false,
@@ -49,6 +52,13 @@ export const useGameInfo = defineStore('game', {
     },
     endCall() {
       this.activeCall = null
+    },
+    showHints(type) {
+      this.hintModalType = type
+      this.showHintModal = true
+    },
+    closeHints() {
+      this.showHintModal = false
     },
     isCharCallable(charKey) {
       return this.callableCharacters[charKey] || false
@@ -93,7 +103,8 @@ export const useGameInfo = defineStore('game', {
       this.activeMessage = null
       this.activeRiddle = null
       this.riddleSolved = false
-      this.fristHintFound = false
+      this.firstHintFound = false
+      this.SecondHintFound = false
       this.currentScenarioImage = 'default'
       this.feedback.type = ''
       this.feedback.message = ''
