@@ -104,11 +104,9 @@ export function useGameLogicLvl1(setFeedback) {
     // Step 6: User enters 28 → cong
     if (game.currentScenarioImage === 'final' && code === finishLvl1Code) {
       game.enteredCodes.push(finishLvl1Code)
-      playSound(levelSound)
+      playSound(stepFoundSound)
       game.currentScenarioImage = 'congrats'
       setFeedback('success', '')
-      //play sound
-
       game.setCharCallable('Santiago', false)
       roadmap.addEntry('step1', 'step1_2')
       return
@@ -117,6 +115,7 @@ export function useGameLogicLvl1(setFeedback) {
     // Step 7: User enters 88 → continue to level 2
     if (game.currentScenarioImage === 'congrats' && code === continueLvl2) {
       game.enteredCodes.push(continueLvl2)
+      playSound(levelSound)
       game.resetAfterLevel()
       game.level = 2
       router.push('/level/2')

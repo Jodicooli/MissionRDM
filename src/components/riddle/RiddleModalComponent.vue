@@ -1,7 +1,7 @@
 <template>
-  <div v-if="visible" class="fixed inset-0 bg-black/70 z-50 flex items-center justify-center">
-    <div class="bg-[#1b1b1b] text-white rounded-lg p-4 w-[90vw] sm:w-[70vw] lg:w-[50vw] max-h-[90vh] overflow-y-auto relative">
-      <button @click="$emit('close')" class="absolute top-2 right-2 text-white hover:text-red-400">&times;</button>
+  <div v-if="visible" class="fixed inset-0 bg-black/70 z-[9999] flex items-center justify-center">
+    <div class="bg-[#1b1b1b] text-white rounded-lg p-4 w-[90vw] sm:w-[70vw] lg:w-[50vw] max-h-[90vh] overflow-y-auto relative z-[10000]">
+      <button @click="$emit('close')" class="absolute top-2 right-2 text-white hover:text-red-400 z-[10001]">&times;</button>
       <h2 class="text-lg font-bold mb-4 text-amber-400">{{ title }}</h2>
       <img v-if="image" :src="image" alt="Riddle" class="mb-4 rounded border border-amber-400 max-w-[600px] max-h-[400px] object-contain mx-auto" />
       <p class="mb-2">{{ question }}</p>
