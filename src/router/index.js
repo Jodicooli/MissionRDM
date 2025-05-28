@@ -1,8 +1,10 @@
-import Introduction from '@/pages/Introduction/Introduction.vue'
-import Tutorial from '@/pages/Introduction/Tutorial.vue'
+import { createRouter, createWebHistory } from 'vue-router'
+
+import Introduction from '@/pages/introduction/Introduction.vue'
+import Tutorial from '@/pages/introduction/Tutorial.vue'
 import StartScreen from '@/pages/StartScreen.vue'
-import Level1 from '@/pages/Level1/Level1.vue'
-import Level2 from '@/pages/Level2/Level2.vue'
+import Level1 from '@/pages/level1/Level1.vue' 
+import Level2 from '@/pages/level2/Level2.vue'
 
 const routes = [
   {
