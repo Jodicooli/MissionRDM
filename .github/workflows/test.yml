@@ -24,10 +24,8 @@ jobs:
     - name: Install dependencies
       run: |
         rm -rf node_modules package-lock.json
-        npm config set optional false
-        npm install
-        npm config set optional true
-        npm install @rollup/rollup-linux-x64-gnu --save-optional || true
+        npm install --omit=optional
+        npm install @rollup/rollup-linux-x64-gnu || true
     
     - name: Run tests
       run: npm run test:run
