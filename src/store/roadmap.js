@@ -21,18 +21,18 @@ export const useRoadmapStore = defineStore('roadmap', () => {
   // Define initial entries with their indentation levels
   const initialEntries = {
     step1: [
-      { key: 'step1_1', level: 1 },
-      { key: 'step1_1_A', level: 2 },
-      { key: 'step1_1_D', level: 2 },
-      { key: 'step1_1_H', level: 2 },
-      { key: 'step1_4', level: 1 },
-      { key: 'step1_5', level: 1 }
+      { key: 'step1_1', level: 1, isNew: false },
+      { key: 'step1_1_A', level: 2, isNew: false },
+      { key: 'step1_1_D', level: 2, isNew: false },
+      { key: 'step1_1_H', level: 2, isNew: false },
+      { key: 'step1_4', level: 1, isNew: false },
+      { key: 'step1_5', level: 1, isNew: false }
     ],
     step4: [
-      { key: 'step4_4', level: 1 }
+      { key: 'step4_4', level: 1, isNew: false }
     ],
     step6: [
-      { key: 'step6_2', level: 1 }
+      { key: 'step6_2', level: 1, isNew: false }
     ]
   }
 
@@ -102,7 +102,7 @@ export const useRoadmapStore = defineStore('roadmap', () => {
     shouldFlash.value = true
     setTimeout(() => {
       shouldFlash.value = false
-    }, 1000) // Flash for 1 second
+    }, 1500) 
   }
 
   // Add an entry to a step with automatic level detection and sorting
@@ -118,7 +118,6 @@ export const useRoadmapStore = defineStore('roadmap', () => {
       if (entryKey.includes('_')) {
         const parts = entryKey.split('_')
         level = parts.length - 1
-        // Special case for A-H sub-items
         if (parts[parts.length - 1].match(/^[A-H]$/)) {
           level = 2
         }
@@ -127,7 +126,8 @@ export const useRoadmapStore = defineStore('roadmap', () => {
       step.items.push({
         text: label,
         level: level,
-        key: entryKey
+        key: entryKey,
+        isNew: true  
       })
       
       // Sort items after adding
@@ -147,31 +147,12 @@ export const useRoadmapStore = defineStore('roadmap', () => {
     initializeSteps()
   }
 
-  // Reset to initial state (only initial entries)
-  function resetToInitial() {
-    roadmapSteps.value.forEach(step => {
-      step.items = []
-      // Add initial entries for this step if they exist
-      if (initialEntries[step.key]) {
-        const entries = initialEntries[step.key].map(entry => ({
-          text: t(`roadmap.${entry.key}`),
-          level: entry.level,
-          key: entry.key
-        }))
-        
-        // Sort entries before adding them
-        step.items = sortEntries(entries)
-      }
-    })
-  }
-
   return {
     roadmapSteps,
     shouldFlash,
     initializeSteps,
     addEntry,
     resetRoadmap,
-    resetToInitial,
     triggerFlash
   }
 })

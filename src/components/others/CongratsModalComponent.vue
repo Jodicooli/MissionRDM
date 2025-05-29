@@ -101,7 +101,7 @@ defineProps({
   steps: Array
 })
 
-defineEmits(['close', 'continue'])
+defineEmits(['continue'])
 
 // Function to add proper indentation for sub-items (A, B, C, etc.)
 function getItemIndentation(item) {

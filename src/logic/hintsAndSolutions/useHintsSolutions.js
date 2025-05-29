@@ -1,5 +1,5 @@
 import { useGameInfo } from '@/store/gameInfo'
-import { useHintsSolutionsLvl1 } from '@/composables/hintsAndSolutions/useHintsSolutionsLvl1.js'
+import { useHintsSolutionsLvl1 } from '@/logic/hintsAndSolutions/useHintsSolutionsLvl1.js'
 
 export function useHintsSolutions() {
     const game = useGameInfo()

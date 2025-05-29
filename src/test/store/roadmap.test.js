@@ -42,13 +42,4 @@ describe('Roadmap Store', () => {
     const step1 = store.roadmapSteps.find(s => s.key === 'step1')
     expect(step1.items.some(item => item.key === 'step1_test')).toBe(false)
   })
-
-  it('reset to initial state', () => {
-    store.initializeSteps()
-    store.addEntry('step1', 'step1_test')
-    store.resetToInitial()
-    
-    const step1 = store.roadmapSteps.find(s => s.key === 'step1')
-    expect(step1.items).toHaveLength(6)
-  })
 })

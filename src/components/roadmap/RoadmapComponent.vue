@@ -21,10 +21,18 @@
         <div 
           v-for="(item, i) in step.items" 
           :key="i"
-          :class="getIndentationClass(item)"
+          :class="[
+            getIndentationClass(item),
+            item.isNew ? 'text-amber-200' : 'text-gray-300'
+          ]"
           class="flex items-start"
         >
-          <span class="mr-2 text-gray-500 flex-shrink-0" :class="getBulletStyle(item)">
+          <span 
+            class="mr-2 flex-shrink-0" 
+            :class="[
+              item.isNew ? 'text-amber-400' : ''
+            ]"
+          >
             {{ getBulletSymbol(item) }}
           </span>
           <span>{{ typeof item === 'string' ? item : item.text }}</span>
@@ -37,55 +45,42 @@
 </template>
 
 <script setup>
-defineProps({
-  steps: Array
-})
+  defineProps({
+    steps: Array
+  })
 
-// Function to determine indentation level
-function getIndentationClass(item) {
-  const level = typeof item === 'object' ? item.level : 0
-  
-  switch(level) {
-    case 1:
-      // Sub-steps like 1.1, 1.2
-      return 'ml-4' 
-    case 2:
-       // Sub-sub-steps like A., B., C.
-      return 'ml-8'
-    default:
-      // Main level
-      return 'ml-0' 
+  // Function to determine indentation level
+  function getIndentationClass(item) {
+    const level = typeof item === 'object' ? item.level : 0
+    
+    switch(level) {
+      case 1:
+        // Sub-steps like 1.1, 1.2
+        return 'ml-4' 
+      case 2:
+        // Sub-sub-steps like A., B., C.
+        return 'ml-8'
+      default:
+        // Main level
+        return 'ml-0' 
+    }
   }
-}
 
-// Function to get different bullet symbols based on level
-function getBulletSymbol(item) {
-  const level = typeof item === 'object' ? item.level : 0
-  
-  switch(level) {
-    case 1:
-      // Arrow for sub-steps
-      return '▸' 
-    // Circle for sub-sub-steps
-    case 2:
-      return '◦' 
-    default:
-      // Main items use a dot
-      return '•' 
+  // Function to get different bullet symbols based on level
+  function getBulletSymbol(item) {
+    const level = typeof item === 'object' ? item.level : 0
+    
+    switch(level) {
+      case 1:
+        // Arrow for sub-steps
+        return '▸' 
+      // Circle for sub-sub-steps
+      case 2:
+        return '◦' 
+      default:
+        // Main items use a dot
+        return '•' 
+    }
   }
-}
 
-// Function to style bullets differently based on level
-function getBulletStyle(item) {
-  const level = typeof item === 'object' ? item.level : 0
-  
-  switch(level) {
-    case 1:
-      return 'text-amber-400' 
-    case 2:
-      return 'text-blue-400' 
-    default:
-      return 'text-gray-500'
-  }
-}
 </script>

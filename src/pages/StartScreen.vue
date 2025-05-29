@@ -18,14 +18,18 @@
         v-model="playerName"
         type="text"
         class="w-full border border-gray-700 bg-[#1a1a1a] text-white rounded-md px-4 py-3 mb-6 focus:outline-none focus:ring-2 focus:ring-amber-500 shadow-inner placeholder-gray-500"
+        :class="{ 'border-red-500': !isNameValid && playerName.trim() }"
         :placeholder="$t('startScreen.namePlaceholder')"
       />
+      <p v-if="!isNameValid && playerName.trim()" class="text-red-500 text-sm mb-4">
+        {{ $t('startScreen.nameError') }}
+      </p>
 
       <div class="flex flex-col space-y-4">
         <button
           class="bg-amber-600 hover:bg-amber-700 text-white font-bold py-3 rounded-md shadow-md uppercase tracking-wide transition-all duration-150"
           @click="startGame"
-          :disabled="!playerName.trim()"
+          :disabled="!isNameValid"
         >
           {{ $t('startScreen.startGame') }}
         </button>
@@ -42,14 +46,14 @@
 
 <script setup>
 import { useStartScreen } from '@/composables/useStartScreen'
-import { useI18n } from 'vue-i18n'
 import LanguageToggle from '@/components/others/LanguageToggleComponent.vue'
-import { useRoadmapStore } from '@/store/roadmap'
+import { isValidName } from '@/logic/startScreenLogic.js'
+import { computed } from 'vue'
 
 const { playerName, startGame, goToTutorial } = useStartScreen()
-const { locale } = useI18n()
 
-const roadmap = useRoadmapStore()
+const isNameValid = computed(() => {
+  return isValidName(playerName.value)
+})
 
-roadmap.resetRoadmap(locale.value)
 </script>

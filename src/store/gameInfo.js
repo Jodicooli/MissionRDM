@@ -29,7 +29,12 @@ export const useGameInfo = defineStore('game', {
     },
     activeCall: null,
     roadmap: {
-      1: []
+      1: [],
+      2: [],
+      3: [],
+      4: [],
+      5: [],
+      6: []
     },
     currentScenarioImage: 'default',
     feedback: {

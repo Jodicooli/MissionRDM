@@ -63,7 +63,7 @@
 </template>
 
 <script setup>
-import { ref, computed } from 'vue'
+import { onMounted, computed } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useGameInfo } from '@/store/gameInfo'
 import { useGameLogicLvl1 } from '@/logic/level1/gameLogicLvl1.js'
@@ -87,6 +87,9 @@ import EnScenarioCongrats from '@/assets/en/lvl1/scenario1.5.png'
 import FrScenarioCongrats from '@/assets/fr/lvl1/scenario1.5.png'
 import RiddleImageEN from '@/assets/en/riddles/riddle1.png'
 import RiddleImageFR from '@/assets/fr/riddles/riddle1.png'
+import { useRoadmapStore } from '@/store/roadmap'
+
+const roadmap = useRoadmapStore()
 
 const { locale, messages, t } = useI18n()
 
@@ -136,6 +139,10 @@ const congratsSteps = computed(() => [
   }
 ])
 
+onMounted(() => {
+  roadmap.resetRoadmap()
+})
+
 const images = {
   en: { default: EnScenario, updated: EnScenario2, third: EnScenario3, final: EnScenarioFinal, congrats: EnScenarioCongrats },
   fr: { default: FrScenario, updated: FrScenario2, third: FrScenario3, final: FrScenarioFinal, congrats: FrScenarioCongrats }
@@ -146,4 +153,6 @@ const scenarioImage = computed(() => {
   const state = game.currentScenarioImage || 'default'
   return images[lang]?.[state] || images[lang].default
 })
+
+
 </script>

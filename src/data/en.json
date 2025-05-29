@@ -5,7 +5,8 @@
     "enterName": "Enter your name:",
     "namePlaceholder": "Your name",
     "startGame": "Start Game",
-    "tutorial": "Tutorial"
+    "tutorial": "Tutorial",
+    "nameError": "Name can only contain letters and numbers."
   },
   "intro": {
     "text": "You are part of a junior research team in a Swiss tourism institute and are planning a research project about the hotel industry in Switzerland. \n\nYour experienced colleague and her team have already conducted their own study on the subject. Unlike her, you are not well informed about the requirements for optimal data management, as you were unable to attend your library's research data management training course. \n\nYour colleague will be leaving for a trip to the Amazon this afternoon. Just before she leaves, she quickly drafts a roadmap with the major steps needed to complete your project and ensure proper management of your research data. As her plane is about to take off, she doesn't have time to finalize it and suggests that you go to her office, where you should find all the information you need to complete the list she has started, provided you go through her things and those of her team. \n\nLuckily, you can also count on Santiago, the information specialist of the institute's library, Inès, an IT specialist and Jack, the institute's legal expert, who will help you during your mission. \n\nBut beware, there is only an hour left before the building closes for the end-of-year holidays! You will have to get out before then if you don't want to stay locked in...",
@@ -64,7 +65,7 @@
     "step4_2": "4.2 Identify data value and determine data preservation",
     "step4_3": "4.3 add appropriate metadata",
     "step4_4": "4.4 Anonymize data (if necessary)",
-    "step5": "Data sharing",
+    "step5": "Step 5: Data sharing",
     "step5_1": "5.1 select a data repository",
     "step5_2": "5.2 Determine access conditions",
     "step5_3": "5.3 Choose a persistent identifier",

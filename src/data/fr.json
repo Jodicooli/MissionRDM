@@ -5,7 +5,8 @@
     "enterName": "Entrez votre nom :",
     "namePlaceholder": "Votre nom",
     "startGame": "Démarrer le jeu",
-    "tutorial": "Tutoriel"
+    "tutorial": "Tutoriel",
+    "nameError": "Le nom ne peut contenir que des lettres et des chiffres."
   },
   "intro": {
     "text": "Vous faites partie d’une jeune équipe de recherche d'un institut en tourisme en Suisse et prévoyez de vous lancer dans un projet de recherche sur l’hôtellerie en Suisse.\n\nVotre collègue, avec son équipe, a déjà mené une étude sur le sujet. Contrairement à elle, vous n’êtes pas au clair sur les besoins liés à la gestion de vos données, car vous n'avez pu participer à la formation de la Bibliothèque sur la thématique de la gestion des données de la recherche.\n\nVotre collègue part en vacances en Amazonie cet après-midi. Juste avant son départ, elle rédige rapidement l’ébauche d’une feuille de route avec les grandes étapes pour mener à bien votre projet et assurer une gestion adéquate de vos données.\n\nComme son avion va bientôt décoller, elle n’a pas le temps de terminer et vous propose de vous installer à son bureau, le numéro 59, où vous trouverez toutes les informations pour compléter la liste qu’elle a commencée, à condition de fouiller un peu dans ses affaires et celles de son équipe...",

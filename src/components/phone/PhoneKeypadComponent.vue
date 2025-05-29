@@ -46,11 +46,23 @@
       <button
         v-for="(char, i) in characters"
         :key="i"
-        class="w-12 h-12 bg-gray-700 rounded-full overflow-hidden relative group hover:ring-2 hover:ring-amber-400" 
+        class="w-12 h-12 rounded-full overflow-hidden relative group transition-all duration-200"
+        :class="[
+          game.isCharCallable(char.name) 
+            ? 'ring-2 ring-green-500 hover:ring-green-400' 
+            : 'ring-2 ring-red-500 hover:ring-red-400'
+        ]"
         @click="makeCall(char)"
-        :title="t('phone.hoverCall')"
       >
         <img :src="char.avatar" alt="Character" class="w-full h-full object-cover" />
+        <div 
+          class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-200"
+          :class="[
+            game.isCharCallable(char.name) 
+              ? 'bg-green-500/20' 
+              : 'bg-red-500/20'
+          ]"
+        ></div>
       </button>
     </div>
 
@@ -112,7 +124,7 @@
 import { ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useGameLogicLvl1 } from '@/logic/level1/gameLogicLvl1.js'
-import { useHintsSolutions } from '@/composables/hintsAndSolutions/useHintsSolutions.js'
+import { useHintsSolutions } from '@/logic/hintsAndSolutions/useHintsSolutions.js'
 import char1 from '@/assets/characters/char1.png'
 import char2 from '@/assets/characters/char2.png'
 import char3 from '@/assets/characters/char3.png'

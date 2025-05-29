@@ -55,25 +55,21 @@
   </div>
 </template>
 <script setup>
-import { ref, onMounted } from 'vue'
+import { ref } from 'vue'
 import RoadmapButton from '@/components/roadmap/RoadmapButtonComponent.vue'
 import RoadmapModal from '@/components/roadmap/RoadmapModalComponent.vue'
 import { useRoadmapStore } from '@/store/roadmap'
-import { useI18n } from 'vue-i18n'
+const roadmap = useRoadmapStore()
+
 import { useGameInfo } from '@/store/gameInfo'
 
 const game = useGameInfo()
 
-const roadmap = useRoadmapStore()
-const { locale } = useI18n()
 const showRoadmap = ref(false)
 
 defineProps({
   imageSrc: String
 })
 
-onMounted(() => {
-  roadmap.initializeSteps()
-})
 
 </script>
