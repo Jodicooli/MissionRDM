@@ -49,6 +49,9 @@ export function useGameLogicLvl1(setFeedback) {
     if (code === countCode && game.firstHintFound) {
       game.enteredCodes.push('4')
       game.enteredCodes.push('8')
+      if (game.overlayNotesOpen) {
+        game.overlayNotesOpen = false
+      }
       setFeedback('success', '')
       playSound(stepFoundSound)
       const image2 = locale.value === 'fr' ? hintImageFR2 : hintImageEN2
@@ -117,6 +120,7 @@ export function useGameLogicLvl1(setFeedback) {
       game.enteredCodes.push(continueLvl2)
       playSound(levelSound)
       game.showCongratsModal = true
+      setFeedback('success', '')
       return
     }
 

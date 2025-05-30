@@ -18,10 +18,12 @@ export const useRoadmapStore = defineStore('roadmap', () => {
   // Flash notification state
   const shouldFlash = ref(false)
 
+  // localStorage key for persistence
+  const STORAGE_KEY = 'escape-game-roadmap-entries'
+
   // Define initial entries with their indentation levels
   const initialEntries = {
     step1: [
-      { key: 'step1_1', level: 1 },
       { key: 'step1_1_A', level: 2 },
       { key: 'step1_1_D', level: 2 },
       { key: 'step1_1_H', level: 2 },
@@ -34,6 +36,83 @@ export const useRoadmapStore = defineStore('roadmap', () => {
     step6: [
       { key: 'step6_2', level: 1 }
     ]
+  }
+
+  // Set to track initial entry keys for determining if an entry is new
+  const initialEntryKeys = new Set()
+
+  // Populate initial entry keys set
+  function populateInitialKeys() {
+    Object.values(initialEntries).forEach(entries => {
+      entries.forEach(entry => {
+        initialEntryKeys.add(entry.key)
+      })
+    })
+  }
+
+  // Save current roadmap state to localStorage
+  function saveToLocalStorage() {
+    try {
+      const unlockedEntries = []
+      roadmapSteps.value.forEach(step => {
+        step.items.forEach(item => {
+          // Only save entries that are not part of initial entries
+          if (!initialEntryKeys.has(item.key)) {
+            unlockedEntries.push({
+              stepKey: step.key,
+              entryKey: item.key,
+              level: item.level,
+              isNew: item.isNew
+            })
+          }
+        })
+      })
+      
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(unlockedEntries))
+    } catch (error) {
+      console.error('Failed to save roadmap to localStorage:', error)
+    }
+  }
+
+  // Load roadmap state from localStorage
+  function loadFromLocalStorage() {
+    try {
+      const saved = localStorage.getItem(STORAGE_KEY)
+      if (saved) {
+        const unlockedEntries = JSON.parse(saved)
+        
+        // Add each unlocked entry back to the roadmap
+        unlockedEntries.forEach(entry => {
+          const step = roadmapSteps.value.find(s => s.key === entry.stepKey)
+          if (step) {
+            const existingItem = step.items.find(item => item.key === entry.entryKey)
+            if (!existingItem) {
+              step.items.push({
+                text: t(`roadmap.${entry.entryKey}`),
+                level: entry.level,
+                key: entry.entryKey,
+                isNew: entry.isNew
+              })
+              step.items = sortEntries(step.items)
+            }
+          }
+        })
+        
+        return true
+      }
+    } catch (error) {
+      console.error('Failed to load roadmap from localStorage:', error)
+    }
+    return false
+  }
+
+  // Clear localStorage
+  function clearLocalStorage() {
+    try {
+      localStorage.removeItem(STORAGE_KEY)
+    } catch (error) {
+      console.error('Failed to clear roadmap localStorage:', error)
+    }
   }
 
   // Function to sort entries by their key structure
@@ -80,21 +159,33 @@ export const useRoadmapStore = defineStore('roadmap', () => {
 
   // Set labels and initial entries on initialization
   function initializeSteps() {
+    
+    // Populate initial keys set first
+    populateInitialKeys()
+    
+    // Clear current items
     roadmapSteps.value.forEach(step => {
+      step.items = []
       step.label = t(`roadmap.${step.key}`)
-      
-      // Add initial entries for this step if they exist
+    })
+    
+    // Add initial entries
+    roadmapSteps.value.forEach(step => {
       if (initialEntries[step.key]) {
         const entries = initialEntries[step.key].map(entry => ({
           text: t(`roadmap.${entry.key}`),
           level: entry.level,
-          key: entry.key
+          key: entry.key,
+          isNew: false // Initial entries are not new
         }))
         
         // Sort entries before adding them
         step.items = sortEntries(entries)
       }
     })
+    
+    // Try to load saved progress from localStorage
+    const hasStoredData = loadFromLocalStorage()
   }
 
   // Trigger flash notification
@@ -106,9 +197,11 @@ export const useRoadmapStore = defineStore('roadmap', () => {
   }
 
   // Add an entry to a step with automatic level detection and sorting
-  function addEntry(stepKey, entryKey) {
+  function addEntry(stepKey, entryKey) {    
     const step = roadmapSteps.value.find(s => s.key === stepKey)
-    if (!step) return
+    if (!step) {
+      return
+    }
 
     const label = t(`roadmap.${entryKey}`)
     const existingItem = step.items.find(item => item.key === entryKey)
@@ -124,14 +217,21 @@ export const useRoadmapStore = defineStore('roadmap', () => {
         }
       }
       
+      // Determine if this entry is new (not in initial entries)
+      const isNew = !initialEntryKeys.has(entryKey)
+      
       step.items.push({
         text: label,
         level: level,
-        key: entryKey
+        key: entryKey,
+        isNew: isNew
       })
       
       // Sort items after adding
       step.items = sortEntries(step.items)
+            
+      // Save to localStorage after adding
+      saveToLocalStorage()
       
       // Trigger flash notification
       triggerFlash()
@@ -139,30 +239,21 @@ export const useRoadmapStore = defineStore('roadmap', () => {
   }
 
   // Reset all roadmap progress (keep structure but remove all items)
-  function resetRoadmap() {
+  function resetRoadmap() {    
+    // Clear localStorage first
+    clearLocalStorage()
+    
     roadmapSteps.value.forEach(step => {
       step.items = []
     })
+    
     // Re-initialize with initial entries
     initializeSteps()
   }
 
-  // Reset to initial state (only initial entries)
+  // Function to reset to initial state
   function resetToInitial() {
-    roadmapSteps.value.forEach(step => {
-      step.items = []
-      // Add initial entries for this step if they exist
-      if (initialEntries[step.key]) {
-        const entries = initialEntries[step.key].map(entry => ({
-          text: t(`roadmap.${entry.key}`),
-          level: entry.level,
-          key: entry.key
-        }))
-        
-        // Sort entries before adding them
-        step.items = sortEntries(entries)
-      }
-    })
+    resetRoadmap()
   }
 
   return {
@@ -172,6 +263,9 @@ export const useRoadmapStore = defineStore('roadmap', () => {
     addEntry,
     resetRoadmap,
     resetToInitial,
-    triggerFlash
+    triggerFlash,
+    saveToLocalStorage,
+    loadFromLocalStorage,
+    clearLocalStorage
   }
 })

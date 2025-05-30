@@ -42,14 +42,15 @@
 
 <script setup>
 import { useStartScreen } from '@/composables/useStartScreen'
-import { useI18n } from 'vue-i18n'
 import LanguageToggle from '@/components/others/LanguageToggleComponent.vue'
+import { onMounted } from 'vue'
 import { useRoadmapStore } from '@/store/roadmap'
 
 const { playerName, startGame, goToTutorial } = useStartScreen()
-const { locale } = useI18n()
 
-const roadmap = useRoadmapStore()
+onMounted(() => {
+  const roadmapStore = useRoadmapStore()
+  roadmapStore.resetRoadmap()
+})
 
-roadmap.resetRoadmap(locale.value)
 </script>
