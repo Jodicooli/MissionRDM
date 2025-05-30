@@ -1,6 +1,6 @@
 import { ref } from 'vue'
 
-export function useTypewriter(paragraphs, speed = 45, delayBetween = 500) {
+export function useTypewriter(paragraphs, speed = 35, delayBetween = 500) {
   const displayedParagraphs = ref([])
   const currentLine = ref('')
   const done = ref(false)

@@ -1,15 +1,7 @@
 <template>
   <div v-if="visible" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-[9999] flex items-center justify-center animate-fadeIn">
     <div class="bg-gradient-to-br from-[#1b1b1b] via-[#2a2a2a] to-[#1b1b1b] text-white rounded-2xl p-6 w-[95vw] sm:w-[85vw] md:w-[70vw] lg:w-[55vw] xl:w-[45vw] max-h-[95vh] sm:max-h-[85vh] overflow-y-auto relative border border-amber-400/30 shadow-2xl animate-slideUp">
-      
-      <!-- Close button -->
-      <button 
-        @click="$emit('close')" 
-        class="absolute top-4 right-4 text-white/70 hover:text-red-400 text-3xl z-[10001] transition-colors duration-200 hover:scale-110 transform"
-      >
-        &times;
-      </button>
-      
+
       <!-- Celebration particles effect -->
       <div class="absolute inset-0 pointer-events-none overflow-hidden rounded-2xl">
         <div class="absolute top-0 left-1/4 w-2 h-2 bg-yellow-400 rounded-full animate-bounce" style="animation-delay: 0.1s;"></div>
@@ -109,7 +101,7 @@ defineProps({
   steps: Array
 })
 
-defineEmits(['close', 'continue'])
+defineEmits(['continue'])
 
 // Function to add proper indentation for sub-items (A, B, C, etc.)
 function getItemIndentation(item) {

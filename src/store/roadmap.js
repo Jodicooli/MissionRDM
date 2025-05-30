@@ -21,7 +21,6 @@ export const useRoadmapStore = defineStore('roadmap', () => {
   // Define initial entries with their indentation levels
   const initialEntries = {
     step1: [
-      { key: 'step1_1', level: 1 },
       { key: 'step1_1_A', level: 2 },
       { key: 'step1_1_D', level: 2 },
       { key: 'step1_1_H', level: 2 },
