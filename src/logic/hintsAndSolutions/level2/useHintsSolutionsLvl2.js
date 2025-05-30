@@ -32,7 +32,7 @@ export function useHintsSolutionsLvl2() {
     }
 
     // Step 5: (third hint) code 15 entered
-    if (codes.includes('15') && !game.secondHintFound) {
+    if (codes.includes('15')) {
       return 'third'
     }
 

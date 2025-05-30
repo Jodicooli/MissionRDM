@@ -36,6 +36,18 @@ export const useRoadmapStore = defineStore('roadmap', () => {
     ]
   }
 
+  // Set to track initial entry keys for determining if an entry is new
+  const initialEntryKeys = new Set()
+
+  // Populate initial entry keys set
+  function populateInitialKeys() {
+    Object.values(initialEntries).forEach(entries => {
+      entries.forEach(entry => {
+        initialEntryKeys.add(entry.key)
+      })
+    })
+  }
+
   // Function to sort entries by their key structure
   function sortEntries(entries) {
     return entries.sort((a, b) => {
@@ -80,6 +92,9 @@ export const useRoadmapStore = defineStore('roadmap', () => {
 
   // Set labels and initial entries on initialization
   function initializeSteps() {
+    // Populate initial keys set first
+    populateInitialKeys()
+    
     roadmapSteps.value.forEach(step => {
       step.label = t(`roadmap.${step.key}`)
       
@@ -88,7 +103,8 @@ export const useRoadmapStore = defineStore('roadmap', () => {
         const entries = initialEntries[step.key].map(entry => ({
           text: t(`roadmap.${entry.key}`),
           level: entry.level,
-          key: entry.key
+          key: entry.key,
+          isNew: false // Initial entries are not new
         }))
         
         // Sort entries before adding them
@@ -124,10 +140,14 @@ export const useRoadmapStore = defineStore('roadmap', () => {
         }
       }
       
+      // Determine if this entry is new (not in initial entries)
+      const isNew = !initialEntryKeys.has(entryKey)
+      
       step.items.push({
         text: label,
         level: level,
-        key: entryKey
+        key: entryKey,
+        isNew: isNew
       })
       
       // Sort items after adding
@@ -147,22 +167,9 @@ export const useRoadmapStore = defineStore('roadmap', () => {
     initializeSteps()
   }
 
-  // Reset to initial state (only initial entries)
+  // Function to reset to initial state (if resetToInitial was missing)
   function resetToInitial() {
-    roadmapSteps.value.forEach(step => {
-      step.items = []
-      // Add initial entries for this step if they exist
-      if (initialEntries[step.key]) {
-        const entries = initialEntries[step.key].map(entry => ({
-          text: t(`roadmap.${entry.key}`),
-          level: entry.level,
-          key: entry.key
-        }))
-        
-        // Sort entries before adding them
-        step.items = sortEntries(entries)
-      }
-    })
+    resetRoadmap()
   }
 
   return {

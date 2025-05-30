@@ -9,25 +9,29 @@
         <h3 class="text-lg font-semibold text-amber-400 tracking-wide">
           {{ step.label }}
         </h3>
-        <span
-          v-if="step.completed"
-          class="text-sm bg-green-600 text-white px-2 py-0.5 rounded-full font-medium shadow-sm"
-        >
-          {{ $t('roadmap.complete') }}
-        </span>
       </div>
 
-      <div v-if="step.items.length" class="text-sm text-gray-300 space-y-1">
+      <div v-if="step.items.length" class="text-sm space-y-1">
         <div 
           v-for="(item, i) in step.items" 
           :key="i"
-          :class="getIndentationClass(item)"
-          class="flex items-start"
+          :class="[
+            getIndentationClass(item),
+            getEntryColorClass(item)
+          ]"
+          class="flex items-start transition-colors duration-300"
         >
-          <span class="mr-2 text-gray-500 flex-shrink-0" :class="getBulletStyle(item)">
+          <span 
+            class="mr-2 flex-shrink-0" 
+            :class="getBulletColorClass(item)"
+          >
             {{ getBulletSymbol(item) }}
           </span>
-          <span>{{ typeof item === 'string' ? item : item.text }}</span>
+          <span 
+            :class="item.isNew ? 'font-medium' : ''"
+          >
+            {{ typeof item === 'string' ? item : item.text }}
+          </span>
         </div>
       </div>
 
@@ -37,55 +41,57 @@
 </template>
 
 <script setup>
-defineProps({
-  steps: Array
-})
+  defineProps({
+    steps: Array
+  })
 
-// Function to determine indentation level
-function getIndentationClass(item) {
-  const level = typeof item === 'object' ? item.level : 0
-  
-  switch(level) {
-    case 1:
-      // Sub-steps like 1.1, 1.2
-      return 'ml-4' 
-    case 2:
-       // Sub-sub-steps like A., B., C.
-      return 'ml-8'
-    default:
-      // Main level
-      return 'ml-0' 
+  // Function to determine indentation level
+  function getIndentationClass(item) {
+    const level = typeof item === 'object' ? item.level : 0
+    
+    switch(level) {
+      case 1:
+        // Sub-steps like 1.1, 1.2
+        return 'ml-4' 
+      case 2:
+        // Sub-sub-steps like A., B., C.
+        return 'ml-8'
+      default:
+        // Main level
+        return 'ml-0' 
+    }
   }
-}
 
-// Function to get different bullet symbols based on level
-function getBulletSymbol(item) {
-  const level = typeof item === 'object' ? item.level : 0
-  
-  switch(level) {
-    case 1:
-      // Arrow for sub-steps
-      return '▸' 
-    // Circle for sub-sub-steps
-    case 2:
-      return '◦' 
-    default:
-      // Main items use a dot
-      return '•' 
+  // Function to get text color class based on whether entry is new
+  function getEntryColorClass(item) {
+    if (typeof item === 'object' && item.isNew) {
+      return 'text-yellow-500'
+    }
+    return 'text-gray-300'
   }
-}
 
-// Function to style bullets differently based on level
-function getBulletStyle(item) {
-  const level = typeof item === 'object' ? item.level : 0
-  
-  switch(level) {
-    case 1:
-      return 'text-amber-400' 
-    case 2:
-      return 'text-blue-400' 
-    default:
-      return 'text-gray-500'
+  // Function to get bullet color class based on whether entry is new
+  function getBulletColorClass(item) {
+    if (typeof item === 'object' && item.isNew) {
+      return 'text-yellow-400'
+    }
+    return 'text-gray-400'
   }
-}
+
+  // Function to get different bullet symbols based on level
+  function getBulletSymbol(item) {
+    const level = typeof item === 'object' ? item.level : 0
+    
+    switch(level) {
+      case 1:
+        // Arrow for sub-steps
+        return '▸' 
+      // Circle for sub-sub-steps
+      case 2:
+        return '◦' 
+      default:
+        // Main items use a dot
+        return '•' 
+    }
+  }
 </script>
