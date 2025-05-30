@@ -15,7 +15,7 @@ export const useGameInfo = defineStore('game', {
     enteredCodes: [],
     
     overlayNotes: [],
-     
+    overlayNotesOpen: false,
     activeMessage: null,
     activeRiddle: null,
     riddleSolved: false,
@@ -80,15 +80,19 @@ export const useGameInfo = defineStore('game', {
       }
     },
     showOverlay(note) {
+      if (this.overlayNotesOpen) {
+        return
+      }
       const id = overlayId++
       const fullNote = typeof note === 'string'
         ? { id, type: 'text', text: note }
         : { ...note, id }
-       
+      this.overlayNotesOpen = true
       this.overlayNotes.push(fullNote)
-    },
+    },  
     removeOverlay(id) {
       this.overlayNotes = this.overlayNotes.filter(n => n.id !== id)
+      this.overlayNotesOpen = false
     },
     markRoadmap(stepText) {
       if (!this.roadmap[1].includes(stepText)) {
