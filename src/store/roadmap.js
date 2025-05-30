@@ -162,6 +162,7 @@ export const useRoadmapStore = defineStore('roadmap', () => {
     roadmapSteps.value.forEach(step => {
       step.items = []
     })
+    console.log('Roadmap reset to initial state')
     // Re-initialize with initial entries
     initializeSteps()
   }

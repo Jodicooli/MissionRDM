@@ -88,18 +88,12 @@ import EnScenarioCongrats from '@/assets/en/lvl1/scenario1.5.png'
 import FrScenarioCongrats from '@/assets/fr/lvl1/scenario1.5.png'
 import RiddleImageEN from '@/assets/en/riddles/riddle1.png'
 import RiddleImageFR from '@/assets/fr/riddles/riddle1.png'
-import { useRoadmapStore } from '@/store/roadmap'
 
-const roadmap = useRoadmapStore()
 const { locale, messages, t } = useI18n()
 
 const correctAnswers = computed(() =>
   messages.value[locale.value]?.riddle1?.correctAnswers1 || []
 )
-
-onMounted(() => {
-  roadmap.resetRoadmap()
-})
 
 const game = useGameInfo()
 

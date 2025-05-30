@@ -43,7 +43,14 @@
 <script setup>
 import { useStartScreen } from '@/composables/useStartScreen'
 import LanguageToggle from '@/components/others/LanguageToggleComponent.vue'
+import { onMounted } from 'vue'
+import { useRoadmapStore } from '@/store/roadmap'
 
 const { playerName, startGame, goToTutorial } = useStartScreen()
+
+onMounted(() => {
+  const roadmapStore = useRoadmapStore()
+  roadmapStore.resetRoadmap()
+})
 
 </script>
