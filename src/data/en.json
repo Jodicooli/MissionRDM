@@ -123,5 +123,26 @@
       "seventh": "OFS_Continental_20200628_V01.png -> Enter number 28.",
       "eigth": "Enter number 88."
     }
+  },
+  "level2": {
+    "hints": {
+      "first": "The keys are not just for opening doors, they can also help you with the next step.",
+      "second": "A little bit of math will certainly be necessary.",
+      "third": "Take a look at the names of the sheets, what could this file contain... ... + this one?",
+      "fourth": "Sometimes examples are the best way to understand.",
+      "fifth": "The reception desk is a good place to start.",
+      "sixth": "A little bit of math will certainly be necessary.",
+      "seventh": "You'll have to walk a bit"
+    },
+    "solutions": {
+      "first": "Enter number 9 (in the key box).",
+      "second": "Enter number 15 (Backup number: 7.5 x 2).",
+      "third": "Enter number 31 (Addition both sheet names -> 15 + 16).",
+      "fourth": "Enter number 1 (examp1e.odt).",
+      "fifth": "Enter number 36 (R36CEPTION on the reception desk).",
+      "sixth": "Enter number 7 (3 + 2 + 1 + 1 + 0 = 7).",
+      "seventh": "Enter number 11 (11th floor)."
+    }
   }
 }
+

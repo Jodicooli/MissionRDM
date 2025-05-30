@@ -123,5 +123,25 @@
       "seventh": "OFS_Continental_20200628_V01.png -> Entrez le chiffre 28.",
       "eigth": "Entrez le chiffre 88."
     }
+  },
+  "level2": {
+    "hints": {
+      "first": "Les clés ne servent pas seulement à ouvrir des portes, elles peuvent aussi vous aider pour l’étape suivante.",
+      "second": "Une petite addition sera certainement nécessaire.",
+      "third": "Regardez les noms des feuilles, que pourrait contenir ce fichier... ... + celui-ci ?",
+      "fourth": "Parfois, les exemples sont le meilleur moyen de comprendre.",
+      "fifth": "Le bureau de réception est un bon point de départ.",
+      "sixth": "Une petite addition sera certainement nécessaire.",
+      "seventh": "Il va falloir marcher un peu."
+    },
+    "solutions": {
+      "first": "Entrez le chiffre 9 (dans la boîte à clés).",
+      "second": "Entrez le chiffre 15 (Numéro de sauvegarde : 7,5 x 2).",
+      "third": "Entrez le chiffre 31 (Addition des deux noms de feuilles -> 15 + 16).",
+      "fourth": "Entrez le chiffre 1 (examp1e.odt).",
+      "fifth": "Entrez le chiffre 36 (R36CEPTION sur le bureau d'accueil).",
+      "sixth": "Entrez le chiffre 6 (3 + 2 + 1 = 6).",
+      "seventh": "Entrez le chiffre 11 (11ème étage)."
+    }
   }
 }
