@@ -18,6 +18,13 @@ describe('Game Logic Router', () => {
     expect(handleCodeInput).toBeDefined()
   })
 
+  it('routes to level 2 logic', () => {
+    global.mockRouter.useRoute.mockReturnValue({ path: '/level/2' })
+    
+    const { handleCodeInput } = useGameLogic(setFeedback)
+    expect(handleCodeInput).toBeDefined()
+  })
+  
   it('handles unknown levels', () => {
     global.mockRouter.useRoute.mockReturnValue({ path: '/level/999' })
     

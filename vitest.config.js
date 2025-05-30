@@ -24,6 +24,7 @@ export default defineConfig({
         '**config**',
         '**/main.js',
         '**/App.vue',
+        '**/assets/**',
       ],
       thresholds: {
         global: {
