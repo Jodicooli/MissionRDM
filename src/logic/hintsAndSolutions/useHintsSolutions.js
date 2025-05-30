@@ -1,11 +1,7 @@
 import { useGameInfo } from '@/store/gameInfo'
-<<<<<<< Updated upstream:src/composables/hintsAndSolutions/useHintsSolutions.js
-import { useHintsSolutionsLvl1 } from '@/composables/hintsAndSolutions/useHintsSolutionsLvl1.js'
-=======
 import { useRoute } from 'vue-router'
 import { useHintsSolutionsLvl1 } from '@/logic/hintsAndSolutions/level1/useHintsSolutionsLvl1.js'
-import { useHintsSolutionsLvl12 } from '@/logic/hintsAndSolutions/level2/useHintsSolutionsLvl12.js'
->>>>>>> Stashed changes:src/logic/hintsAndSolutions/useHintsSolutions.js
+import { useHintsSolutionsLvl2 } from '@/logic/hintsAndSolutions/level2/useHintsSolutionsLvl2.js'
 
 export function useHintsSolutions() {
     const game = useGameInfo()
@@ -15,7 +11,7 @@ export function useHintsSolutions() {
         return useHintsSolutionsLvl1()
     }
     if (route.path.includes('/level/2')) {
-        return useHintsSolutionsLvl12()
+        return useHintsSolutionsLvl2()
     }
     if (game.getLvl() === 3) {
         console.log('Hints and solutions for level 3 are not implemented yet.')

@@ -2,7 +2,7 @@ import { computed } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useGameInfo } from '@/store/gameInfo'
 
-export function useHintsSolutionsLvl12() {
+export function useHintsSolutionsLvl2() {
   const { t } = useI18n()
   const game = useGameInfo()
 
