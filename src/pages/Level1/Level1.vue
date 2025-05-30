@@ -88,12 +88,31 @@ import EnScenarioCongrats from '@/assets/en/lvl1/scenario1.5.png'
 import FrScenarioCongrats from '@/assets/fr/lvl1/scenario1.5.png'
 import RiddleImageEN from '@/assets/en/riddles/riddle1.png'
 import RiddleImageFR from '@/assets/fr/riddles/riddle1.png'
+import { useRoadmapStore } from '@/store/roadmap'
 
+const roadmap = useRoadmapStore()
 const { locale, messages, t } = useI18n()
 
 const correctAnswers = computed(() =>
   messages.value[locale.value]?.riddle1?.correctAnswers1 || []
 )
+
+onMounted(() => {  
+  // Always ensure roadmap is initialized (will load from localStorage if available)
+  const hasAnyItems = roadmap.roadmapSteps.some(step => step.items.length > 0)
+  if (!hasAnyItems) {
+    roadmap.initializeSteps()
+  } 
+  // Debug: show current roadmap state
+  roadmap.roadmapSteps.forEach(step => {
+    if (step.items.length > 0) {
+      console.log(`  ${step.key}: ${step.items.length} items`, step.items.map(item => ({
+        key: item.key,
+        isNew: item.isNew
+      })))
+    }
+  })
+})
 
 const game = useGameInfo()
 

@@ -13,7 +13,7 @@ export function useHintsSolutions() {
     if (route.path.includes('/level/2')) {
         return useHintsSolutionsLvl2()
     }
-    if (game.getLvl() === 3) {
+    if (route.path.includes('/level/3')) {
         console.log('Hints and solutions for level 3 are not implemented yet.')
         return {
             currentHint: () => 'Hints and solutions for level 3 are not implemented yet.',

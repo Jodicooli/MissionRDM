@@ -28,14 +28,6 @@ export const useGameInfo = defineStore('game', {
       Jack: false
     },
     activeCall: null,
-    roadmap: {
-      1: [],
-      2: [],
-      3: [],
-      4: [],
-      5: [],
-      6: []
-    },
     currentScenarioImage: 'default',
     feedback: {
       type: '',
@@ -98,12 +90,6 @@ export const useGameInfo = defineStore('game', {
     removeOverlay(id) {
       this.overlayNotes = this.overlayNotes.filter(n => n.id !== id)
       this.overlayNotesOpen = false
-    },
-    markRoadmap(stepText) {
-      const step = this.level
-      if (!this.roadmap[step].includes(stepText)) {
-        this.roadmap[step].push(stepText)
-      }
     },
     setFeedback(type, message) {
       this.feedback.type = type

@@ -50,7 +50,7 @@
 </template>
 
 <script setup>
-import { computed } from 'vue'
+import { onMounted, computed } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useGameInfo } from '@/store/gameInfo'
 import { useGameLogicLvl2 } from '@/logic/level2/gameLogicLvl2.js'
@@ -73,8 +73,28 @@ import EnScenario5 from '@/assets/en/lvl2/scenario1.5.png'
 import FrScenario5 from '@/assets/fr/lvl2/scenario1.5.png'
 import EnScenarioFinal from '@/assets/en/lvl2/scenario1.6.png'
 import FrScenarioFinal from '@/assets/fr/lvl2/scenario1.6.png'
+import { useRoadmapStore } from '@/store/roadmap'
 
 const { locale, t } = useI18n()
+const roadmap = useRoadmapStore()
+
+onMounted(() => { 
+  // Always ensure roadmap is initialized (will load from localStorage if available)
+  const hasAnyItems = roadmap.roadmapSteps.some(step => step.items.length > 0)
+  if (!hasAnyItems) {
+    roadmap.initializeSteps()
+  }
+  
+  // Debug: show current roadmap state
+  roadmap.roadmapSteps.forEach(step => {
+    if (step.items.length > 0) {
+      console.log(`  ${step.key}: ${step.items.length} items`, step.items.map(item => ({
+        key: item.key,
+        isNew: item.isNew
+      })))
+    }
+  })
+})
 
 const game = useGameInfo()
 
@@ -93,7 +113,7 @@ function handleContinueToLevel3() {
   continueToLevel3()
 }
 
-// Get congratulations steps from roadmap entries completed in level 1
+// Get congratulations steps from roadmap entries completed in level 2
 const congratsSteps = computed(() => [
   {
     label: t('roadmap.step2'),
@@ -115,5 +135,4 @@ const scenarioImage = computed(() => {
   const state = game.currentScenarioImage || 'default'
   return images[lang]?.[state] || images[lang].default
 })
-
 </script>
